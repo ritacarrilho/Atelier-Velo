@@ -1,0 +1,12 @@
+name: atelier
+recipe: symfony
+config:
+  webroot: public
+services:
+  database:
+    type: mysql
+    portforward: 3307
+    creds: 
+      user: rita
+      password: admin
+      database: atelier
