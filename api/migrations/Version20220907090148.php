@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220906140309 extends AbstractMigration
+final class Version20220907090148 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -29,7 +29,7 @@ final class Version20220906140309 extends AbstractMigration
         $this->addSql('CREATE TABLE product_category (id INT AUTO_INCREMENT NOT NULL, label VARCHAR(100) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE subscriber (id INT AUTO_INCREMENT NOT NULL, role_id INT NOT NULL, first_name VARCHAR(150) NOT NULL, last_name VARCHAR(150) NOT NULL, phone VARCHAR(255) NOT NULL, address VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, INDEX IDX_AD005B69D60322AC (role_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE subscriber_role (id INT AUTO_INCREMENT NOT NULL, role VARCHAR(100) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, subscriber_id INT NOT NULL, username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, role TINYINT(1) NOT NULL, UNIQUE INDEX UNIQ_8D93D6497808B1AD (subscriber_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, subscriber_id INT NOT NULL, identifiant VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, role TINYINT(1) NOT NULL, UNIQUE INDEX UNIQ_8D93D6497808B1AD (subscriber_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE bicycle ADD CONSTRAINT FK_D81AFAAE12469DE2 FOREIGN KEY (category_id) REFERENCES product_category (id)');
         $this->addSql('ALTER TABLE bicycle ADD CONSTRAINT FK_D81AFAAEC54C8C93 FOREIGN KEY (type_id) REFERENCES bicycle_type (id)');
         $this->addSql('ALTER TABLE bicycle ADD CONSTRAINT FK_D81AFAAE498DA827 FOREIGN KEY (size_id) REFERENCES bicycle_size (id)');

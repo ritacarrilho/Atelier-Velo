@@ -29,9 +29,9 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=255)
-     * Assert\Username
+     * Assert\Identifiant
      */
-    private $username;
+    private $identifiant;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -59,12 +59,12 @@ class User implements UserInterface, \Serializable
 
     public function getIdentifiant(): ?string
     {
-        return $this->username;
+        return $this->identifiant;
     }
 
-    public function setIdentifiant(string $username): self
+    public function setIdentifiant(string $identifiant): self
     {
-        $this->username = $username;
+        $this->identifiant = $identifiant;
 
         return $this;
     }

@@ -124,4 +124,11 @@ class Subscriber
 
         return $this;
     }
+
+    // FullName format
+    public function getFullName() {
+        return $this->getFirstName(). " " . $this->getLastName();
+    }
+
+
 }

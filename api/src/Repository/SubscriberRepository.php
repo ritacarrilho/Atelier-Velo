@@ -39,6 +39,12 @@ class SubscriberRepository extends ServiceEntityRepository
         }
     }
 
+    public function orderName() {
+        return $this->createQueryBuilder('s')
+                    ->orderBy('s.first_name', 'ASC');
+    }
+
+
 //    /**
 //     * @return Subscriber[] Returns an array of Subscriber objects
 //     */
