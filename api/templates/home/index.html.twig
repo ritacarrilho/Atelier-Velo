@@ -1,0 +1,12 @@
+{%extends "base.html.twig" %} 
+{% block title %}Atelier Vélo du Vernet{% endblock %}
+
+{% block body %}
+<main>
+<div>
+        {{ include("template_part/menu.html.twig", {pp: 'menu'} )}}
+    </div>
+
+</main>
+    {{ include("template_part/footer.html.twig", {pp: 'footer'} )}}
+{% endblock %}

@@ -4,11 +4,21 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert; // allows to make a constraint to a propriety
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @method string getUserIdentifier()
+ * @UniqueEntity(
+ *  fields={"email"},
+ *  message="This email exist already"
+ * ) 
  */
-class User
+
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id
@@ -19,11 +29,13 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
+     * Assert\Username
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min="8", minMessage="Your password must have 8 or more characters")
      */
     private $password;
 
@@ -36,19 +48,21 @@ class User
      * @ORM\OneToOne(targetEntity=Subscriber::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private $subscriber_id;
+    private $subscriber;
+
+    public $confirm_password;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getUsername(): ?string
+    public function getIdentifiant(): ?string
     {
         return $this->username;
     }
 
-    public function setUsername(string $username): self
+    public function setIdentifiant(string $username): self
     {
         $this->username = $username;
 
@@ -79,15 +93,55 @@ class User
         return $this;
     }
 
-    public function getSubscriberId(): ?Subscriber
+    public function getSubscriber(): ?Subscriber
     {
-        return $this->subscriber_id;
+        return $this->subscriber;
     }
 
-    public function setSubscriberId(Subscriber $subscriber_id): self
+    public function setSubscriber(Subscriber $subscriber): self
     {
-        $this->subscriber_id = $subscriber_id;
+        $this->subscriber = $subscriber;
 
         return $this;
+    }
+
+    public function getRoles()
+    {
+        return [$this->getRole()];
+    }
+
+    public function getSalt()
+    {
+        return null;
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
+    public function getUsername()
+    {
+        return $this->getIdentifiant();
+    }
+
+    public function __call($name, $arguments)
+    {
+        // TODO: Implement @method string getUserIdentifier()
+    }
+
+    public function serialize()
+    {
+        return serialize([
+            $this->getId(),
+            $this->getEmail(),
+            $this->getPassword()
+        ]);
+    }
+
+    public function unserialize($data)
+    {
+        list($this->id, $this->email, $this->password) =
+            unserialize($data, ['allowed_classes' => false]);
     }
 }

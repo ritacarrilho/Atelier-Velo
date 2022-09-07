@@ -41,7 +41,7 @@ class Subscriber
      * @ORM\ManyToOne(targetEntity=SubscriberRole::class)
      * @ORM\JoinColumn(nullable=false)
      */
-    private $role_id;
+    private $role;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -101,14 +101,14 @@ class Subscriber
         return $this;
     }
 
-    public function getRoleId(): ?SubscriberRole
+    public function getRole(): ?SubscriberRole
     {
-        return $this->role_id;
+        return $this->role;
     }
 
-    public function setRoleId(?SubscriberRole $role_id): self
+    public function setRole(?SubscriberRole $role): self
     {
-        $this->role_id = $role_id;
+        $this->role = $role;
 
         return $this;
     }

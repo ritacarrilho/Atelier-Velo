@@ -61,7 +61,18 @@ class Bicycle
      * @ORM\ManyToOne(targetEntity=ProductCategory::class)
      * @ORM\JoinColumn(nullable=false)
      */
-    private $category_id;
+    private $category;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=BicycleType::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $type;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=BicycleSize::class)
+     */
+    private $size;
 
     public function getId(): ?int
     {
@@ -164,14 +175,38 @@ class Bicycle
         return $this;
     }
 
-    public function getCategoryId(): ?ProductCategory
+    public function getCategory(): ?ProductCategory
     {
-        return $this->category_id;
+        return $this->category;
     }
 
-    public function setCategoryId(?ProductCategory $category_id): self
+    public function setCategory(?ProductCategory $category): self
     {
-        $this->category_id = $category_id;
+        $this->category = $category;
+
+        return $this;
+    }
+
+    public function getType(): ?BicycleType
+    {
+        return $this->type;
+    }
+
+    public function setType(?BicycleType $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getSize(): ?BicycleSize
+    {
+        return $this->size;
+    }
+
+    public function setSize(?BicycleSize $size): self
+    {
+        $this->size = $size;
 
         return $this;
     }
