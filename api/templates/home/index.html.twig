@@ -2,11 +2,13 @@
 {% block title %}Atelier Vélo du Vernet{% endblock %}
 
 {% block body %}
-<main>
-<div>
+<header>
         {{ include("template_part/menu.html.twig", {pp: 'menu'} )}}
-    </div>
+</header>
 
+<main>
+    
 </main>
-    {{ include("template_part/footer.html.twig", {pp: 'footer'} )}}
+    
+{{ include("template_part/footer.html.twig", {pp: 'footer'} )}}
 {% endblock %}

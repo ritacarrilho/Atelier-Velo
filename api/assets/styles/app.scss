@@ -14,6 +14,10 @@ body{
   font-family: 'Poppins';
 }
 
+header {
+  background-image:'../img/tom-austin.jpg' ;
+}
+
 .navigation {
   height: $nav-height;
   background: $nav-background;
@@ -89,7 +93,6 @@ nav {
     }
   }
 }
-
 
 .nav-dropdown {
   display: none;
