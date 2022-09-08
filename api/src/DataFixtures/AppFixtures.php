@@ -237,22 +237,19 @@ class AppFixtures extends Fixture
     {
     /* Association */
         $admin_user = new User();
-        $admin_user->setIdentifiant( "AtelierVelo")
+        $admin_user->setUsername( "AtelierVelo")
                     ->setPassword( $this->pass_hasher->hashPassword($admin_user, 'velovelo' ))
-                    ->setRole( "ROLE_ADMIN" )
-                    ->setSubscriber( $this->getReference(('association-' . 1 )) );  
+                    ->setRole( "ROLE_ADMIN" );
 
         $manager->persist($admin_user);
 
     /* Employees / Volunteers */
-        for($i=0; $i < ($this->employee_nb); $i++) {
-            $user = new User();
-            $user->setIdentifiant( $faker->domainWord)
-                ->setPassword( $this->pass_hasher->hashPassword($user, $faker->password) )
-                ->setRole( "ROLE_USER" )
-                ->setSubscriber( $this->getReference(('employee-'. ($i+1) )) );  
+        $user = new User();
+        $user->setUsername( "Benevole" )
+            ->setPassword( $this->pass_hasher->hashPassword($user, 'toto') )
+            ->setRole( "ROLE_USER" );
 
-            $manager->persist($user);
-        }
+        $manager->persist($user);
+        
     }
 }
