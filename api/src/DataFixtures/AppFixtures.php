@@ -250,6 +250,5 @@ class AppFixtures extends Fixture
             ->setRole( "ROLE_USER" );
 
         $manager->persist($user);
-        
     }
 }
