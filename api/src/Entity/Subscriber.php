@@ -130,5 +130,9 @@ class Subscriber
         return $this->getFirstName(). " " . $this->getLastName();
     }
 
+    public function __toString()
+    {
+        return $this->getFullName();
+    }
 
 }

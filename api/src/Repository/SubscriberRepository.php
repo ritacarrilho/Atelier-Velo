@@ -44,7 +44,6 @@ class SubscriberRepository extends ServiceEntityRepository
                     ->orderBy('s.first_name', 'ASC');
     }
 
-
 //    /**
 //     * @return Subscriber[] Returns an array of Subscriber objects
 //     */

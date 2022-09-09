@@ -210,4 +210,9 @@ class Bicycle
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->model;
+    }
 }

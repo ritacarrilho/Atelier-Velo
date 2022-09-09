@@ -39,6 +39,15 @@ class ProductRepository extends ServiceEntityRepository
         }
     }
 
+    public function findProductsInfo() {
+        return $this->createQueryBuilder('p')
+                    ->join('p.category_id','pc')
+                    ->addSelect('pc')
+                    ->getQuery()->getResult();
+    }
+
+//     SELECT product.id, product.model, product.description, product.price, product.image, product_category.label as category_label FROM product
+// JOIN product_category ON product.category_id_id = product_category.id;
 //    /**
 //     * @return Product[] Returns an array of Product objects
 //     */

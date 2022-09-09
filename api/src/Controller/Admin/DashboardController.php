@@ -18,31 +18,31 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\SubscriberRepository;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 
 class DashboardController extends AbstractDashboardController
 {
+      /**
+     * @var SubscriberRepository
+     */
+    private $subscriberRepo;
+
+    public function __construct(SubscriberRepository $subscriberRepository)
+    {
+        $this->subscriberRepo = $subscriberRepository;
+    }
     /**
      * @Route("/admin", name="admin")
      */
     public function index(): Response
     {
-        // return parent::index();
-        //TODO: dashboard homepage
-
-        $routeBuilder = $this->container->get(AdminUrlGenerator::class);
-        $url = $routeBuilder->setController(BicycleCrudController::class)->generateUrl();
-        $url = $routeBuilder->setController(BicycleSizeCrudController::class)->generateUrl();
-        $url = $routeBuilder->setController(BicycleTypeCrudController::class)->generateUrl();
-        $url = $routeBuilder->setController(EventCrudController::class)->generateUrl();
-        $url = $routeBuilder->setController(EventCategoryCrudController::class)->generateUrl();
-        $url = $routeBuilder->setController(ProductCrudController::class)->generateUrl();
-        $url = $routeBuilder->setController(ProductCategoryCrudController::class)->generateUrl();
-        $url = $routeBuilder->setController(SubscriberCrudController::class)->generateUrl();
-        $url = $routeBuilder->setController(SubscriberRoleCrudController::class)->generateUrl();
-        $url = $routeBuilder->setController(UserCrudController::class)->generateUrl();
+        $subscribers = $this->subscriberRepo->findAll();
 
 
-        return $this->redirect($url);
+        return $this->render('admin/dashboard.html.twig', [
+            'subscribers' => count($subscribers),
+        ]);
     }
 
     public function configureDashboard(): Dashboard
@@ -51,18 +51,24 @@ class DashboardController extends AbstractDashboardController
             ->setTitle('Atelier Vélo du Vernet');
     }
 
+    // public function configureCrud(string $pageName): Crud
+    // {
+    //     $pageName = "Vélos";
+    //     return Crud::new()->setPageTitle($pageName);
+    // }
+    
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToCrud('Vélo', 'fas fa-bicycle', Bicycle::class);
         yield MenuItem::linkToCrud('Vélo taille', 'fas fa-bicycle', BicycleSize::class);
         yield MenuItem::linkToCrud('Vélo type', 'fas fa-bicycle', BicycleType::class);
         yield MenuItem::linkToCrud('Evénements', 'fas fa-calendar-alt', Event::class);
-        yield MenuItem::linkToCrud('Categorie des evénements', 'fas fa-calendar-alt', EventCategory::class);
+        yield MenuItem::linkToCrud('Catégorie des evénements', 'fas fa-calendar-alt', EventCategory::class);
         yield MenuItem::linkToCrud('Produits', 'fas fa-store', Product::class);
-        yield MenuItem::linkToCrud('Categorie des produits', 'fas fa-store', ProductCategory::class);
+        yield MenuItem::linkToCrud('Catégorie des produits', 'fas fa-store', ProductCategory::class);
         yield MenuItem::linkToCrud('Adhérents', 'fas fa-biking', Subscriber::class);
         yield MenuItem::linkToCrud('Role des Adhérents', 'fas fa-user-friends', SubscriberRole::class);
         yield MenuItem::linkToCrud('Comptes', 'fas fa-user', User::class);
-        yield MenuItem::linktoRoute('Back to the website', 'fas fa-home', 'app_home');
+        yield MenuItem::linktoUrl('Accueil', 'fas fa-home', $this->generateUrl('app_home'));
     }
 }
