@@ -4,9 +4,11 @@ namespace App\Entity;
 
 use App\Repository\BicycleSizeRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass=BicycleSizeRepository::class)
+ * @ApiResource()
  */
 class BicycleSize
 {

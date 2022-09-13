@@ -4,9 +4,11 @@ namespace App\Entity;
 
 use App\Repository\EventRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass=EventRepository::class)
+ * @ApiResource()
  */
 class Event
 {
