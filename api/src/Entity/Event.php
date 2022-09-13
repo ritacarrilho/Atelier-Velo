@@ -8,7 +8,11 @@ use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass=EventRepository::class)
- * @ApiResource()
+ * @ApiResource(
+ *      attributes={
+ *          "order"={"event_date":"ASC"}
+ *      }
+ * )
  */
 class Event
 {
