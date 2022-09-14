@@ -54,7 +54,16 @@ body
                 width: 60vw
 
             @media (min-width: $desktop-bg-layout)    
-                width: 50vw
+                width: 45vw
+
+            .alert-danger
+                color: red
+                visibility: hidden
+                &:after
+                    display: block
+                    content: "Le identifiant ou le mot passe sont invalides"
+                    visibility: visible
+                    text-align: center
 
             h1
                 text-align: center
