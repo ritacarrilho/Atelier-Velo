@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Mochiy+Pop+One&family=Roboto:wght@100;300;400;500;700;900&display=swap')
+
+$bg-color: #f1f1f1
+$dark-blue: #283b3d
+$light-blue: #2b7e87
+$desktop-layout: 800px
+$desktop-bg-layout: 1050px
+
+body 
+    font-family: 'Roboto', sans-serif
+
+    input
+        border: 1px solid black
+        padding: 9px
+        border-radius: 5px
+    
+    button
+        border: 1px solid $dark-blue
+        padding: 10px
+        border-radius: 5px
+        background-color: $dark-blue
+        color: $bg-color
+
+        &:hover
+            background-color: $light-blue 
+            border-color: $light-blue
+    
+    /* LOGIN FORM */
+    .form-section 
+        width: 100vw
+        height: 100vh
+        background-image: url('../img/tom-austin-XbZy0-JHINA-unsplash.jpg')
+        background-position: center
+        background-repeat: no-repeat
+        background-size: cover
+        opacity: 0.6
+        display: flex
+        justify-content: center
+        align-items: center
+
+        form
+            width: 75vws
+            min-height: 60vh
+            padding: 35px
+            background-color: $bg-color
+            border-radius: 6px
+            // opacity: 0.8
+            display: flex
+            flex-direction: column
+            justify-content: space-evenly
+            box-shadow: 4px 5px 13px 2px rgb(0 0 0)
+
+            @media (min-width: $desktop-layout)    
+                width: 60vw
+
+            @media (min-width: $desktop-bg-layout)    
+                width: 50vw
+
+            h1
+                text-align: center
+
+                span
+                    display: block
+                    font-weight: 700
+
+            .input-container
+                display: flex
+                flex-direction: column
+
+                label
+                    margin: 7px 0
+                    font-weight: 500
+                
+                .checkbox
+                    margin: 7px 0
+                    

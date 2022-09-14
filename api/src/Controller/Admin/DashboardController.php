@@ -19,6 +19,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\SubscriberRepository;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -36,7 +37,18 @@ class DashboardController extends AbstractDashboardController
     {
         $this->subscriberRepo = $subscriberRepository;
         $this->bicycleRepo = $bicycleRepository;
+    }
 
+    /**
+     * @Route("/", name="app_home")
+     */
+    public function home(): Response
+    {
+        if ($this->isGranted('IS_AUTHENTICATED_FULLY') == true) {
+            return $this->redirectToRoute('admin');
+        } else {
+            return $this->redirectToRoute('app_login');
+        }
     }
 
     /**

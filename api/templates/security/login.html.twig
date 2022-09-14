@@ -3,7 +3,7 @@
 {% block title %}Atelier Vélo du Vernet LogIn{% endblock %}
 
 {% block body %}
-<section class="wrapper"> 
+<section class="form-section wrapper"> 
     <form method="post">
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -17,13 +17,14 @@
         {% endif %}
 
         {% if not app.user %}
-        <h1 class="h3 mb-3 font-weight-normal">Welcome to Atelier Vélo du Vernet</h1>
-        <label for="inputUsername">Identifiant</label>
-        <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
-        <label for="inputPassword">Mot de passe</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+        <h1>Bienvenue sur le backoffice de <span>l'Atelier Vélo du Vernet</span></h1>
+        <div class="input-container">
+            <label for="inputUsername">Identifiant</label>
+            <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
+            <label for="inputPassword">Mot de passe</label>
+            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
         
             {# Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
@@ -31,13 +32,13 @@
 
             <div class="checkbox mb-3">
                 <label>
-                    <input type="checkbox" name="_remember_me"> Remember me
+                    <input type="checkbox" name="_remember_me"> Se souvenir de moi
                 </label>
             </div>
-    
+        </div>
 
         <button class="btn btn-lg btn-primary" type="submit">
-            Sign in
+            Connecter
         </button>
     </form>
 </section>
