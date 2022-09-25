@@ -39,7 +39,7 @@ class AppFixtures extends Fixture
         $this->types = ["Vélo Ville", "Vélo Route", "VTT"];
         $this->sizes = ["Adulte", "Enfant"];
         $this->role = ["Administration", "Bénévole", "Salarié", "Adhérent"];
-        $this->subscribers_nb = 55;
+        $this->subscribers_nb = 20;
         $this->employee_nb = 5;
     }
 
@@ -121,7 +121,7 @@ class AppFixtures extends Fixture
 /* BICYCLE */
     public function loadBicycle($manager, $faker)
     {
-    $bike_nb = 20;
+    $bike_nb = 10;
 
         for($i=0; $i < $bike_nb; $i++) {
             $bicycle = new Bicycle();
@@ -159,7 +159,7 @@ class AppFixtures extends Fixture
 /* EVENT */
     public function loadEvent($manager, $faker)
     {
-       $evt_nb = 30;
+       $evt_nb = 15;
 
         for($i=0; $i < $evt_nb; $i++) {
             $evt = new Event();

@@ -78,20 +78,22 @@ class DashboardController extends AbstractDashboardController
 
             // MenuItem::linkToDashboard('Dashboard', 'fa fa-home'),
             MenuItem::section('Vélos et Produits'),
-            MenuItem::linkToCrud('Vélos', 'fas fa-bicycle', Bicycle::class),
-            MenuItem::linkToCrud('Vélo taille', 'fas fa-bicycle', BicycleSize::class),
-            MenuItem::linkToCrud('Vélo type', 'fas fa-bicycle', BicycleType::class),
+            MenuItem::linkToCrud('Vélo', 'fas fa-bicycle', Bicycle::class),
+            MenuItem::linkToCrud('Vélo - taille', 'fas fa-bicycle', BicycleSize::class),
+            MenuItem::linkToCrud('Vélo - modèle', 'fas fa-bicycle', BicycleType::class),
             MenuItem::linkToCrud('Produits', 'fas fa-store', Product::class),
             MenuItem::linkToCrud('Catégorie des produits', 'fas fa-store', ProductCategory::class),
 
             MenuItem::section('Evénements'),
-            MenuItem::linkToCrud('Evénements', 'fas fa-calendar-alt', Event::class),
-            MenuItem::linkToCrud('Catégorie des evénements', 'fas fa-calendar-alt', EventCategory::class),
+            MenuItem::linkToCrud('Événements', 'fas fa-calendar-alt', Event::class),
+            MenuItem::linkToCrud('Catégorie d\'événements', 'fas fa-calendar-alt', EventCategory::class),
 
             MenuItem::section('Adhérents et Utilisateurs'),
             MenuItem::linkToCrud('Adhérents', 'fas fa-biking', Subscriber::class),
-            MenuItem::linkToCrud('Role des Adhérents', 'fas fa-user-friends', SubscriberRole::class),
-            MenuItem::linkToCrud('Comptes', 'fas fa-user', User::class),
+            MenuItem::linkToCrud('Rôle d\'Adhérents', 'fas fa-user-friends', SubscriberRole::class)
+                ->setPermission('ROLE_ADMIN'),
+            MenuItem::linkToCrud('Comptes', 'fas fa-user', User::class)
+                ->setPermission('ROLE_ADMIN'),
         ];
     }
 }

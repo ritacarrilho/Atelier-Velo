@@ -34,7 +34,7 @@ class Event
     private $description;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $event_date;
 

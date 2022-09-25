@@ -10,8 +10,3 @@ when@prod:
     framework:
         router:
             strict_requirements: null
-
-# easy_admin_bundle:
-#     resource: "@EasyAdminBundle/Controller/AdminController.php"
-#     type:     annotation
-#     prefix:   /admin
