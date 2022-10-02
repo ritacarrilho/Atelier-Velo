@@ -35,7 +35,7 @@ class AppFixtures extends Fixture
     {
         $this->pass_hasher = $passwordHasher;
         $this->evts = ["Formation de mécanique", "Activités", "Balades"];
-        $this->category = ["Vélo", "Freins", "Poignés", "Pneus", "Antivol", "Chaine"];
+        $this->category = ["Vélo", "Freins", "Poignés", "Pneus", "Antivol", "Chaine", "Selle"];
         $this->types = ["Vélo Ville", "Vélo Route", "VTT"];
         $this->sizes = ["Adulte", "Enfant"];
         $this->role = ["Administration", "Bénévole", "Salarié", "Adhérent"];

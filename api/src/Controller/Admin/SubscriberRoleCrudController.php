@@ -9,6 +9,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
 
 class SubscriberRoleCrudController extends AbstractCrudController
 {
@@ -17,14 +19,23 @@ class SubscriberRoleCrudController extends AbstractCrudController
         return SubscriberRole::class;
     }
 
-    /* change crud page title */
+/* change crud - pages title, entity display name */
     public function configureCrud(Crud $crud): Crud
     {
     return $crud
+    // entity label
+        ->setEntityLabelInSingular('Rôle')
+        ->setEntityLabelInPlural('Rôles')
+    // Pgaes titles
         ->setPageTitle('index', 'Rôle des Adhérents')
         ->setPageTitle('detail', fn (SubscriberRole $role) => (string) $role)
         ->setPageTitle('edit', fn (SubscriberRole $role) => sprintf($role->getRole()))
-    ;
+        ->setPageTitle('new', 'Créer Rôle')
+    // Sort order
+        ->setDefaultSort(['id' => 'ASC'])
+    // Elements per page
+        ->setPaginatorPageSize(10)
+        ->setPaginatorRangeSize(4);
     }
 
     public function configureFields(string $pageName): iterable
@@ -55,4 +66,20 @@ class SubscriberRoleCrudController extends AbstractCrudController
                 return $action->setLabel('Enregistrer');
             });
     }
+
+    // protected function getRedirectResponseAfterSave(AdminContext $context, string $action): RedirectResponse
+    // {
+    //     $submitButtonName = $context->getRequest()->request->all()['ea']['newForm']['btn'];
+
+    //     if ('saveAndViewDetail' === $submitButtonName) {
+    //         $url = $this->get(AdminUrlGenerator::class)
+    //             ->setAction(Action::DETAIL)
+    //             ->setEntityId($context->getEntity()->getPrimaryKeyValue())
+    //             ->generateUrl();
+
+    //         return $this->redirect($url);
+    //     }
+
+    //     return parent::getRedirectResponseAfterSave($context, $action);
+    // }
 }

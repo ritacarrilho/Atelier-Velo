@@ -34,10 +34,13 @@ class SubscriberCrudController extends AbstractCrudController
 
     public function configureCrud(Crud $crud): Crud
     {
-/* change pages title */
+/* change crud - pages title, entity display name */
     return $crud
+        ->setEntityLabelInSingular('Adhérent')
+        ->setEntityLabelInPlural('Adhérents')
         ->setPageTitle('index', 'Adhérents')
         ->setPageTitle('detail', fn (Subscriber $subscriber) => (string) $subscriber)
+        ->setPageTitle('new', 'Ajouter Adhérent')
         ->setPageTitle('edit', fn (Subscriber $subscriber) => sprintf('Editer <b>%s</b>', $subscriber->getFullName()));
     }
 
@@ -57,7 +60,7 @@ class SubscriberCrudController extends AbstractCrudController
             ->update(Crud::PAGE_EDIT, Action::SAVE_AND_CONTINUE, function (Action $action) {
                 return $action->setLabel('Enregistrer et continuer l\'édition');
             })
-            ->update(Crud::PAGE_EDIT, Action::SAVE_AND_RETURN, function (Action $action) {
+            ->update(Crud::PAGE_NEW, Action::SAVE_AND_RETURN, function (Action $action) {
                 return $action->setLabel('Enregistrer');
             });
     }

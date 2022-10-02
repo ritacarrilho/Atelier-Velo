@@ -10,6 +10,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 
+//TODO: is granted ADMIN
+
 class UserCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
