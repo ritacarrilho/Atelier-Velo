@@ -23,7 +23,7 @@ class SubscriberRoleCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
     return $crud
-    // entity label
+    // Entity label
         ->setEntityLabelInSingular('Rôle')
         ->setEntityLabelInPlural('Rôles')
     // Pgaes titles

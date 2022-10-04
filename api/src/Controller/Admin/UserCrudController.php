@@ -23,10 +23,18 @@ class UserCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
     return $crud
+    // Entity label
+        ->setEntityLabelInSingular('Utilisateur')
+        ->setEntityLabelInPlural('Utilisateurs')
+    // Pgaes titles
         ->setPageTitle('index', 'Utilisateurs')
         ->setPageTitle('detail', fn (User $user) => (string) $user)
         ->setPageTitle('edit', fn (User $user) => sprintf($user->getUsername()))
-    ;
+    // Sort order
+        ->setDefaultSort(['id' => 'ASC'])
+    // Elements per page
+        ->setPaginatorPageSize(10)
+        ->setPaginatorRangeSize(4);
     }
 
     public function configureFields(string $pageName): iterable
@@ -34,8 +42,10 @@ class UserCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('username', 'Username'),
-            TextField::new('password', 'Password')->onlyOnForms()->hideWhenUpdating(),
-            TextField::new('role', 'Rôle')->onlyOnForms(),
+            TextField::new('password', 'Password')->onlyOnForms(),
+            TextField::new('role', 'Rôle'),
+            // TextField::new('password', 'Password')->onlyOnForms()->hideWhenUpdating(),
+            // TextField::new('role', 'Rôle')->onlyOnForms(),
         ];
     }
 

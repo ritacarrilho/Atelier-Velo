@@ -229,7 +229,6 @@ class AppFixtures extends Fixture
 
             $this->addReference('employee-' . ($j+1), $employee);
         }
-
     }
 
 /* USER */

@@ -36,12 +36,19 @@ class SubscriberCrudController extends AbstractCrudController
     {
 /* change crud - pages title, entity display name */
     return $crud
+    // Entity Label
         ->setEntityLabelInSingular('Adhérent')
         ->setEntityLabelInPlural('Adhérents')
+    // Pages titles
         ->setPageTitle('index', 'Adhérents')
         ->setPageTitle('detail', fn (Subscriber $subscriber) => (string) $subscriber)
         ->setPageTitle('new', 'Ajouter Adhérent')
-        ->setPageTitle('edit', fn (Subscriber $subscriber) => sprintf('Editer <b>%s</b>', $subscriber->getFullName()));
+        ->setPageTitle('edit', fn (Subscriber $subscriber) => sprintf('Editer <b>%s</b>', $subscriber->getFullName()))
+    // Sort order
+        ->setDefaultSort(['id' => 'ASC'])
+    // Elements per page
+        ->setPaginatorPageSize(10)
+        ->setPaginatorRangeSize(4);
     }
 
     /* Change actions */

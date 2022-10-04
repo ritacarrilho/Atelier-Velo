@@ -24,10 +24,18 @@ class EventCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
     return $crud
+    // Entity label
+        ->setEntityLabelInSingular('Evénement')
+        ->setEntityLabelInPlural('Evénements')
+    // Pages titles
         ->setPageTitle('index', 'Événements')
         ->setPageTitle('detail', fn (Event $event) => (string) $event)
         ->setPageTitle('edit', fn (Event $event) => sprintf($event->getTitle()))
-    ;
+    // Sort order
+        ->setDefaultSort(['id' => 'ASC'])
+    // Elements per page
+        ->setPaginatorPageSize(10)
+        ->setPaginatorRangeSize(4);
     }
 
     public function configureFields(string $pageName): iterable

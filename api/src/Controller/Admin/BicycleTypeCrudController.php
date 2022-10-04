@@ -29,9 +29,18 @@ class BicycleTypeCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
     return $crud
+    // Entity label
+        ->setEntityLabelInSingular('Modèle')
+        ->setEntityLabelInPlural('Modèles')
+    // Pages titles
         ->setPageTitle('index', 'Modèles de Vélo')
         ->setPageTitle('detail', fn (BicycleType $type) => (string) $type)
-        ->setPageTitle('edit', fn (BicycleType $type) => sprintf($type->getType()));
+        ->setPageTitle('edit', fn (BicycleType $type) => sprintf($type->getType()))
+    // Sort order
+        ->setDefaultSort(['id' => 'ASC'])
+    // Elements per page
+        ->setPaginatorPageSize(10)
+        ->setPaginatorRangeSize(4);
     }
 
         /* Change actions */

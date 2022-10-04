@@ -38,9 +38,18 @@ class ProductCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
+        // Entity label
+            ->setEntityLabelInSingular('Produit')
+            ->setEntityLabelInPlural('Produits')
+        // Pages titles
             ->setPageTitle('index', 'Produits')
             ->setPageTitle('detail', fn (Product $product) => (string) $product)
-            ->setPageTitle('edit', fn (Product $category) => sprintf($category->getModel()));
+            ->setPageTitle('edit', fn (Product $category) => sprintf($category->getModel()))
+        // Sort order
+            ->setDefaultSort(['id' => 'ASC'])
+        // Elements per page
+            ->setPaginatorPageSize(10)
+            ->setPaginatorRangeSize(4);
     }
 
     /* Change actions */
