@@ -26,10 +26,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
-
-
-// TODO: persist role
-
 class UserCrudController extends AbstractCrudController
 {
     private $pass_hasher;
@@ -71,11 +67,9 @@ class UserCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('username', 'Username'),
-            Field::new('password', 'Password')->hideOnIndex(),        
+            Field::new ('password', 'Password')->setFormType(PasswordType::class)->hideOnIndex(),        
             // ArrayField::new('roles', 'Rôle') 
             //     ->setHelp('<h5>Rôles Disponibles</h5> <ul><li>Administration: ROLE_ADMIN</li><li>Bénevole et Salarié: ROLE_USER</li><ul>'),
-            // ->setFormTypeOptions([
-            //     'choices' => array_combine($roles, $roles)])
             ChoiceField::new('roles')->setChoices($roles)->allowMultipleChoices(),
         ];
     }
