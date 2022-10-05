@@ -7,6 +7,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TelephoneField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
@@ -21,13 +23,18 @@ class SubscriberCrudController extends AbstractCrudController
 /* Entity fields */
     public function configureFields(string $pageName): iterable
     {
+        $roles = [
+            'User'   => 'ROLE_USER',
+            'Admin'  => 'ROLE_ADMIN'
+        ];
+        
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('first_name', 'Prénom'),
             TextField::new('last_name', 'Nom'),
-            TextField::new('phone', 'Téléphone'),
+            TelephoneField::new('phone', 'Téléphone'),
             TextField::new('address', 'Adresse'),
-            TextField::new('email', 'Email'),
+            EmailField::new('email', 'Email'),
             AssociationField::new('role', 'Rôle'),
         ];
     }
