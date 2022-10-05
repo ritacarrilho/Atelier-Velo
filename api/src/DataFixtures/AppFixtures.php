@@ -232,7 +232,7 @@ class AppFixtures extends Fixture
     }
 
 /* USER */
-    public function loadUser($manager, $faker)
+    public function loadUser($manager)
     {
     /* Association */
         $admin_user = new User();

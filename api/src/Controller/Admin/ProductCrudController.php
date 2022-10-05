@@ -60,7 +60,7 @@ class ProductCrudController extends AbstractCrudController
                 return $action->setLabel('Ajouter Produit')->addCssClass('btn btn-success');
             })
             ->update(Crud::PAGE_INDEX, Action::DELETE, function (Action $action) {
-                return $action->setLabel('Effacer')->setCssClass('text-danger');
+                return $action->setLabel('Effacer')->setCssClass('text-danger action-delete');
             })
             ->update(Crud::PAGE_INDEX, Action::EDIT, function (Action $action) {
                 return $action->setLabel('Éditer')->setCssClass('text-warning');

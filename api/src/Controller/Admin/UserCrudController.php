@@ -8,11 +8,27 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 
-// TODO: Hash passwords when persist
+use EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore;
+use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
+use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
+use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+
+
+
+// TODO: persist role
 
 class UserCrudController extends AbstractCrudController
 {
@@ -50,16 +66,17 @@ class UserCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        $roles = [
-            'Utilisateur' => 'ROLE_USER',
-            'Admin' => 'ROLE_ADMIN',
-        ];
+        $roles = ['Administrateur' =>'ROLE_ADMIN', 'Utilisateur' => 'ROLE_USER'];
 
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('username', 'Username'),
-            TextField::new('password', 'Password')->onlyOnForms(),
-            ChoiceField::new('role', 'Rôle')->setChoices($roles),
+            Field::new('password', 'Password')->hideOnIndex(),        
+            // ArrayField::new('roles', 'Rôle') 
+            //     ->setHelp('<h5>Rôles Disponibles</h5> <ul><li>Administration: ROLE_ADMIN</li><li>Bénevole et Salarié: ROLE_USER</li><ul>'),
+            // ->setFormTypeOptions([
+            //     'choices' => array_combine($roles, $roles)])
+            ChoiceField::new('roles')->setChoices($roles)->allowMultipleChoices(),
         ];
     }
 
@@ -71,7 +88,7 @@ class UserCrudController extends AbstractCrudController
                 return $action->setLabel('Ajouter Utilisateur')->addCssClass('btn btn-success');
             })
             ->update(Crud::PAGE_INDEX, Action::DELETE, function (Action $action) {
-                return $action->setLabel('Effacer')->setCssClass('text-danger');
+                return $action->setLabel('Effacer')->setCssClass('text-danger action-delete');
             })
             ->update(Crud::PAGE_INDEX, Action::EDIT, function (Action $action) {
                 return $action->setLabel('Éditer')->setCssClass('text-warning');
@@ -81,6 +98,36 @@ class UserCrudController extends AbstractCrudController
             })
             ->update(Crud::PAGE_EDIT, Action::SAVE_AND_RETURN, function (Action $action) {
                 return $action->setLabel('Enregistrer');
-            });
+            })
+            ->setPermission(Action::DELETE, 'ROLE_ADMIN');
+    }
+
+    // Encode password
+    // public function createEditFormBuilder( EntityDto $entityDto, KeyValueStore $formOptions, AdminContext $context ): FormBuilderInterface {
+    //     $plainPassword = $entityDto->getInstance()->getPassword();
+    //     $formBuilder   = parent::createEditFormBuilder( $entityDto, $formOptions, $context );
+    //     $this->addEncodePasswordEventListener( $formBuilder, $plainPassword );
+
+    //     return $formBuilder;
+    // }
+
+    public function createNewFormBuilder( EntityDto $entityDto, KeyValueStore $formOptions, AdminContext $context ): FormBuilderInterface {
+        $formBuilder = parent::createNewFormBuilder( $entityDto, $formOptions, $context );
+        $this->addEncodePasswordEventListener( $formBuilder );
+
+        return $formBuilder;
+    }
+
+    // Encode password Event Listener
+    protected function addEncodePasswordEventListener( FormBuilderInterface $formBuilder, $plainPassword = null ): void {
+        $formBuilder->addEventListener( FormEvents::SUBMIT, function ( FormEvent $event ) use ( $plainPassword ) {
+
+            /** @var User $user */
+            $user = $event->getData();
+
+            if ( $user->getPassword() !== $plainPassword ) {
+                $user->setPassword( $this->pass_hasher->hashPassword( $user, $user->getPassword() ) );
+            }
+        });
     }
 }
