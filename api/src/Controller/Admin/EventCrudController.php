@@ -5,7 +5,8 @@ namespace App\Controller\Admin;
 use App\Entity\Event;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -43,12 +44,12 @@ class EventCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('title', 'Titre'),
-            TextField::new('description', 'Description'),
-            DateTimeField::new('event_date', 'Date')->setFormat('dd.MM.yyyy HH:mm'),
+            TextAreaField::new('description', 'Description'),
+            DateField::new('event_date', 'Date')->setFormat('dd.MM.yyyy HH:mm'),
             ImageField::new('image', 'Image')
-                        // ->setBasePath('upload/images')
-                        ->setUploadDir('public/upload/images')
-                        ->setSortable(false),
+                        ->setBasePath('upload/images')
+                        ->setUploadDir('public/upload/images'),
+                        // ->setSortable(false),
             AssociationField::new('category_id', 'Categorie'),
         ];
     }
@@ -61,16 +62,16 @@ class EventCrudController extends AbstractCrudController
                 return $action->setLabel('Ajouter événement')->addCssClass('btn btn-success');
             })
             ->update(Crud::PAGE_INDEX, Action::DELETE, function (Action $action) {
-                return $action->setLabel('Effacer')->setCssClass('text-danger action-delete');
+                return $action->setCssClass('text-danger action-delete');
             })
             ->update(Crud::PAGE_INDEX, Action::EDIT, function (Action $action) {
-                return $action->setLabel('Éditer')->setCssClass('text-warning');
-            })
-            ->update(Crud::PAGE_EDIT, Action::SAVE_AND_CONTINUE, function (Action $action) {
-                return $action->setLabel('Enregistrer et continuer l\'édition');
-            })
-            ->update(Crud::PAGE_EDIT, Action::SAVE_AND_RETURN, function (Action $action) {
-                return $action->setLabel('Enregistrer');
+                return $action->setCssClass('text-warning');
             });
+            // ->update(Crud::PAGE_EDIT, Action::SAVE_AND_CONTINUE, function (Action $action) {
+            //     return $action->setLabel('Enregistrer et continuer l\'édition');
+            // })
+            // ->update(Crud::PAGE_EDIT, Action::SAVE_AND_RETURN, function (Action $action) {
+            //     return $action->setLabel('Enregistrer');
+            // });
     }
 }

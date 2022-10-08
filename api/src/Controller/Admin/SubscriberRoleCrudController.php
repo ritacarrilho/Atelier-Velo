@@ -51,35 +51,19 @@ class SubscriberRoleCrudController extends AbstractCrudController
     {
         return $actions
             ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
-                return $action->setLabel('Ajouter Rôle')->addCssClass('btn btn-success');
+                return $action->addCssClass('btn btn-success');
             })
             ->update(Crud::PAGE_INDEX, Action::DELETE, function (Action $action) {
-                return $action->setLabel('Effacer')->setCssClass('text-danger action-delete');
+                return $action->setCssClass('text-danger action-delete');
             })
             ->update(Crud::PAGE_INDEX, Action::EDIT, function (Action $action) {
-                return $action->setLabel('Éditer')->setCssClass('text-warning');
-            })
-            ->update(Crud::PAGE_EDIT, Action::SAVE_AND_CONTINUE, function (Action $action) {
-                return $action->setLabel('Enregistrer et continuer l\'édition');
-            })
-            ->update(Crud::PAGE_EDIT, Action::SAVE_AND_RETURN, function (Action $action) {
-                return $action->setLabel('Enregistrer');
+                return $action->setCssClass('text-warning');
             });
+            // ->update(Crud::PAGE_EDIT, Action::SAVE_AND_CONTINUE, function (Action $action) {
+            //     return $action->setLabel('Enregistrer et continuer l\'édition');
+            // })
+            // ->update(Crud::PAGE_EDIT, Action::SAVE_AND_RETURN, function (Action $action) {
+            //     return $action->setLabel('Enregistrer');
+            // });
     }
-
-    // protected function getRedirectResponseAfterSave(AdminContext $context, string $action): RedirectResponse
-    // {
-    //     $submitButtonName = $context->getRequest()->request->all()['ea']['newForm']['btn'];
-
-    //     if ('saveAndViewDetail' === $submitButtonName) {
-    //         $url = $this->get(AdminUrlGenerator::class)
-    //             ->setAction(Action::DETAIL)
-    //             ->setEntityId($context->getEntity()->getPrimaryKeyValue())
-    //             ->generateUrl();
-
-    //         return $this->redirect($url);
-    //     }
-
-    //     return parent::getRedirectResponseAfterSave($context, $action);
-    // }
 }

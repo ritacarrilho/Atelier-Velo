@@ -11,6 +11,6 @@ api_platform:
              JWT:
                 name: Authorization
                 type: header
-        # versions: [3]
+        versions: [3]
     formats:
         json: ['application/json']

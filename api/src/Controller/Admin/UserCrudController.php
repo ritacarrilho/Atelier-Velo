@@ -63,13 +63,11 @@ class UserCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         $roles = ['Administrateur' =>'ROLE_ADMIN', 'Utilisateur' => 'ROLE_USER'];
-
+        
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('username', 'Username'),
             Field::new ('password', 'Password')->setFormType(PasswordType::class)->hideOnIndex(),        
-            // ArrayField::new('roles', 'Rôle') 
-            //     ->setHelp('<h5>Rôles Disponibles</h5> <ul><li>Administration: ROLE_ADMIN</li><li>Bénevole et Salarié: ROLE_USER</li><ul>'),
             ChoiceField::new('roles')->setChoices($roles)->allowMultipleChoices(),
         ];
     }
@@ -96,15 +94,16 @@ class UserCrudController extends AbstractCrudController
             ->setPermission(Action::DELETE, 'ROLE_ADMIN');
     }
 
-    // Encode password
-    // public function createEditFormBuilder( EntityDto $entityDto, KeyValueStore $formOptions, AdminContext $context ): FormBuilderInterface {
-    //     $plainPassword = $entityDto->getInstance()->getPassword();
-    //     $formBuilder   = parent::createEditFormBuilder( $entityDto, $formOptions, $context );
-    //     $this->addEncodePasswordEventListener( $formBuilder, $plainPassword );
+    // Encode password when edit mode
+    public function createEditFormBuilder( EntityDto $entityDto, KeyValueStore $formOptions, AdminContext $context ): FormBuilderInterface {
+        $plainPassword = $entityDto->getInstance()->getPassword();
+        $formBuilder   = parent::createEditFormBuilder( $entityDto, $formOptions, $context );
+        $this->addEncodePasswordEventListener( $formBuilder, $plainPassword );
 
-    //     return $formBuilder;
-    // }
+        return $formBuilder;
+    }
 
+    // Encode password when new mode
     public function createNewFormBuilder( EntityDto $entityDto, KeyValueStore $formOptions, AdminContext $context ): FormBuilderInterface {
         $formBuilder = parent::createNewFormBuilder( $entityDto, $formOptions, $context );
         $this->addEncodePasswordEventListener( $formBuilder );
