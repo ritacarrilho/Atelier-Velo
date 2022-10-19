@@ -39,6 +39,12 @@ class SubscriberRoleRepository extends ServiceEntityRepository
         }
     }
 
+    public function findAllRoles()  
+    {
+        return $this->createQueryBuilder(('sb.role'));
+                    // ->orderBy('sb.role', 'ASC');
+    }
+
 //    /**
 //     * @return SubscriberRole[] Returns an array of SubscriberRole objects
 //     */

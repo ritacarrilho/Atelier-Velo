@@ -11,6 +11,7 @@ use App\Entity\ProductCategory;
 use App\Entity\Event;
 use App\Entity\User;
 use App\Entity\Product;
+use App\Entity\Service;
 use App\Entity\Subscriber;
 use App\Entity\SubscriberRole;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -30,6 +31,7 @@ class AppFixtures extends Fixture
     public $role;
     public $subscribers_nb;
     public $employee_nb;
+    public $services;
 
     public function __construct(UserPasswordHasherInterface $passwordHasher)
     {
@@ -41,6 +43,7 @@ class AppFixtures extends Fixture
         $this->role = ["Administration", "Bénévole", "Salarié", "Adhérent"];
         $this->subscribers_nb = 20;
         $this->employee_nb = 5;
+        $this->services = ['Vélo école', 'Marquage bicycode', 'Animations', 'Formations mécaniques', 'Récuperation de vélos', 'Actions de sensibilisation'];
     }
 
 /* Load manager - load data into tables */
@@ -58,6 +61,7 @@ class AppFixtures extends Fixture
         $this->loadSubscriberRole($manager);
         $this->loadSubscriber($manager, $faker);
         $this->loadUser($manager, $faker);
+        $this->loadServices($manager, $faker);
 
         $manager->flush();
     }
@@ -238,16 +242,38 @@ class AppFixtures extends Fixture
         $admin_user = new User();
         $admin_user->setUsername( "AtelierVelo")
                     ->setPassword( $this->pass_hasher->hashPassword($admin_user, 'velovelo' ))
-                    ->setRoles( array("ROLE_ADMIN") );
+                    ->setRoles( array("ROLE_ADMIN") )
+                    ->setSubscriberRole( $this->getReference(('subscriber_role-'. 1 )) ) ;
 
         $manager->persist($admin_user);
 
-    /* Employees / Volunteers */
+    /* Volunteers */
         $user = new User();
         $user->setUsername( "Benevole" )
             ->setPassword( $this->pass_hasher->hashPassword($user, 'toto') )
-            ->setRoles( array('ROLE_USER'));
+            ->setRoles( array('ROLE_USER'))
+            ->setSubscriberRole( $this->getReference(('subscriber_role-'. 2 )) ) ;
 
         $manager->persist($user);
+
+        $user = new User();
+        $user->setUsername( "Salarie" )
+            ->setPassword( $this->pass_hasher->hashPassword($user, 'salarie') )
+            ->setRoles( array('ROLE_USER'))
+            ->setSubscriberRole( $this->getReference(('subscriber_role-'. 3 )) ) ;
+
+        $manager->persist($user);
+    }
+
+    /* Services */
+    public function loadServices($manager, $faker) {
+        for ($i=0; $i < count( $this->services ); $i++) { 
+            $service = new Service;
+            $service->setLabel( $this->services[$i] )
+                    ->setDescription( $faker->realText($maxNbChars = 200, $indexSize = 2)  );
+
+        $manager->persist($service);
+
+        }
     }
 }

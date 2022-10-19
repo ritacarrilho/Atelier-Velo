@@ -5,6 +5,9 @@ namespace App\Entity;
 use App\Repository\BicycleRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 
 /**
  * @ORM\Entity(repositoryClass=BicycleRepository::class)

@@ -9,6 +9,7 @@ use App\Entity\Event;
 use App\Entity\EventCategory;
 use App\Entity\Product;
 use App\Entity\ProductCategory;
+use App\Entity\Service;
 use App\Entity\Subscriber;
 use App\Entity\SubscriberRole;
 use App\Entity\User;
@@ -84,9 +85,12 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Produits', 'fas fa-store', Product::class),
             MenuItem::linkToCrud('Catégorie des produits', 'fas fa-store', ProductCategory::class),
 
-            MenuItem::section('Evénements'),
+            MenuItem::section('Evénements et Activités'),
+            MenuItem::linkToCrud('Activités', 'fas fa-calendar-alt', Service::class),
             MenuItem::linkToCrud('Événements', 'fas fa-calendar-alt', Event::class),
             MenuItem::linkToCrud('Catégorie d\'événements', 'fas fa-calendar-alt', EventCategory::class),
+            
+
 
             MenuItem::section('Adhérents et Utilisateurs'),
             MenuItem::linkToCrud('Adhérents', 'fas fa-biking', Subscriber::class),

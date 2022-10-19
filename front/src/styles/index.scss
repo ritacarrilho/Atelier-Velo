@@ -1,9 +1,58 @@
 @import "./reset.css";
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import "./components/header.scss";
 
 body {
-    // background-color: red;
+    font-family: 'Roboto', sans-serif;;
+    color: white;
+    background-color: $dark-blue;
+    font-size: 18px;
+    line-height: 27px;
 }
 
-.nav-active{
-    color: aqua;
+.container {
+    padding: 50px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    padding-bottom: 15px;
+    font-family: 'Kanit', 'sans-serif';
+    font-size: 2rem;
+}
+
+/* ===== Home Page ===== */
+.home-banner {
+    // margin-top: 150px;
+    height: 65vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    .home-img-banner {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.home-intro {
+    margin-top: 65vh;
+    color: $dark-blue;
+    background-color: white ;
+}
+
+.services-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 19px;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+
+    div {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 20px;
+    }
 }

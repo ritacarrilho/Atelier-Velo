@@ -3,11 +3,10 @@ import Navigation from '../components/Navigation';
 
 const Services = () => {
     return (
-        <div>
-            <Navigation />
-            <h1>Activités Page</h1>
-        </div>
-    );
-};
+    <>
+        <Navigation />
+        <h1>Activités Page</h1>
+    </>
+)};
 
 export default Services;

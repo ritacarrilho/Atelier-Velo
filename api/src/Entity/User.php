@@ -46,6 +46,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $password;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=SubscriberRole::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $subscriberRole;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -133,5 +139,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString()
     {
         return $this->username;
+    }
+
+    public function getSubscriberRole(): ?SubscriberRole
+    {
+        return $this->subscriberRole;
+    }
+
+    public function setSubscriberRole(SubscriberRole $subscriberRole): self
+    {
+        $this->subscriberRole = $subscriberRole;
+
+        return $this;
     }
 }

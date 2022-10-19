@@ -7,32 +7,31 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
-
 use EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore;
 use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
-use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
-use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use App\Repository\SubscriberRoleRepository;
 
 class UserCrudController extends AbstractCrudController
 {
     private $pass_hasher;
+    public $userRoleRepo;
+    public $roles;
 
-    public function __construct(UserPasswordHasherInterface $passwordHasher)
+    public function __construct(UserPasswordHasherInterface $passwordHasher, SubscriberRoleRepository $subscriberRoleRepository )
     {
         $this->pass_hasher = $passwordHasher;
+        $this->userRoleRepo = $subscriberRoleRepository;
     }
 
     public static function getEntityFqcn(): string
@@ -62,13 +61,23 @@ class UserCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        $roles = ['Administrateur' =>'ROLE_ADMIN', 'Utilisateur' => 'ROLE_USER'];
-        
+        // $roles_array = $this->getUserRoles();
+        $user_roles = ['Administrateur' => 'ROLE_ADMIN', 'Utilisateur standard' => 'ROLE_USER'];
+
+        // $roles_repo = $this->userRoleRepo->findAll();
+
+        // if($_GET['subscriberRole'] == $roles_repo[0]){
+        //     $user_roles = ['Administrateur' => 'ROLE_ADMIN'];
+        // } else {
+        //     $user_roles = ['Utilisateur standard' => 'ROLE_USER'];
+        // }
+
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('username', 'Username'),
-            Field::new ('password', 'Password')->setFormType(PasswordType::class)->hideOnIndex(),        
-            ChoiceField::new('roles')->setChoices($roles)->allowMultipleChoices(),
+            Field::new ('password', 'Password')->setFormType(PasswordType::class)->hideOnIndex(),  
+            AssociationField::new('subscriberRole', 'Rôle'),
+            ChoiceField::new('roles', 'Autorisation')->setChoices($user_roles)->allowMultipleChoices(),
         ];
     }
 
@@ -123,4 +132,33 @@ class UserCrudController extends AbstractCrudController
             }
         });
     }
+
+    // Create roles array from User roles repository
+    // public function getUserRoles(): array {
+    //     // $roles = ['Administrateur' =>'ROLE_ADMIN', 'Utilisateur' => 'ROLE_USER'];
+    //     $roles_repo = $this->userRoleRepo->findAll();
+    //     // dump($roles_repo);
+        
+    //     for ($i=0; $i < count($roles_repo); $i++) { 
+    //         $this->roles .= $roles_repo[$i]->role . ',';
+    //     }
+        
+    //     $array_roles = explode( ',',$this->roles);
+    //     // dump($array_roles);
+        
+    //     if (end($array_roles) == " " || end($array_roles) == "") { 
+    //         $last_el = array_pop($array_roles);
+    //     }
+
+    //     $roles_array = array_fill_keys($array_roles, 'ROLE_USER');
+        
+    //     $replacement = array('Administration' => 'ROLE_ADMIN');
+    //     $roles_array = array_replace($roles_array, $replacement);
+        
+    //     // dump($roles_array);
+                
+    //     // $roles = ['Administrateur' =>'ROLE_ADMIN', 'Utilisateur' => 'ROLE_USER', 'Salarie' => 'ROLE_USER', 'Benevole' => 'ROLE_USER'];
+
+    //     return $roles_array;
+    // }
 }

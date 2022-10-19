@@ -20,7 +20,7 @@ class SubscriberRole
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $role;
+    public $role;
 
     public function getId(): ?int
     {
