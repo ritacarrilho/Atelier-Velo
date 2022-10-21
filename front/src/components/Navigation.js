@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from '../images/logo_header.svg';
-import HomeIntro from './HomeIntro';
 
 const Navigation = () => {
     return (

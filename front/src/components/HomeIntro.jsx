@@ -3,18 +3,22 @@ import axios from 'axios';
 import { faBicycle} from '@fortawesome/free-solid-svg-icons';
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { AxiosInstance } from '../http/AxiosInstance';
 
 const HomeIntro = () => {
 
-    const[services, setServices] = useState([]);
+    const [services, setServices] = useState();
 
     useEffect(() => {
-        axios
-            .get('http://atelier.lndo.site/api/services')
-            // .then((res) => console.log(res.data))
-            .then((res) => setServices(res.data))
-            .catch((err) =>console.log(err));
+        AxiosInstance.get(`/services`)
+            .then(res =>  {
+                setServices(res.data);
+                // console.log(res.data)
+            })
+            .catch(err => console.log(err));
     }, [])
+
+    console.log(services);
 
     return (
         <section className='home-intro container'>
@@ -25,7 +29,7 @@ const HomeIntro = () => {
             <p>Dignissim quis euismod viverra imperdiet tristique est. Aliquam elit varius ut elit tempor et risus ut. </p>
 
             <div className='services-flex'>
-                {services.map((service) => (
+                { services.map((service) => (
                     <div key={service.id}>
                         <FontAwesomeIcon icon={faBicycle} />
                         <p>{service.label}</p>

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import About from './pages/About';
 import Contacts from './pages/Contacts';
 import Events from './pages/Events';
@@ -7,10 +7,8 @@ import Home from './pages/Home';
 import Services from './pages/Services';
 import Store from './pages/Store';
 import Error from './pages/Error';
-import axios from 'axios';
 
 
- 
 const App = () => {
 
   return (
