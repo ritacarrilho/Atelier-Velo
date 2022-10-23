@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { setAuthToken } from './http/setAuthToken';
+import Connection from './http/Connection';
+//  pages
 import About from './pages/About';
 import Contacts from './pages/Contacts';
 import Events from './pages/Events';
@@ -8,6 +11,11 @@ import Services from './pages/Services';
 import Store from './pages/Store';
 import Error from './pages/Error';
 
+//check jwt token
+const token = localStorage.getItem("authToken");
+if (token) {
+    ;
+}
 
 const App = () => {
 
