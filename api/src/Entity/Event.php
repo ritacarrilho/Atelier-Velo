@@ -5,10 +5,13 @@ namespace App\Entity;
 use App\Repository\EventRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiProperty;
 
 /**
  * @ORM\Entity(repositoryClass=EventRepository::class)
  * @ApiResource(
+ *      collectionOperations={"get"},
+ *      itemOperations={"get"},
  *      attributes={
  *          "order"={"event_date":"ASC"}
  *      }
@@ -44,10 +47,16 @@ class Event
     private $image;
 
     /**
+     * @ApiProperty(readableLink=true)
      * @ORM\ManyToOne(targetEntity=EventCategory::class)
      * @ORM\JoinColumn(nullable=false)
      */
     private $category_id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $address;
 
     public function getId(): ?int
     {
@@ -117,5 +126,17 @@ class Event
     public function __toString()
     {
         return $this->title;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
     }
 }

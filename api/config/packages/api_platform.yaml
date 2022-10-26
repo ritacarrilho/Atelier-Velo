@@ -1,6 +1,6 @@
 api_platform:
     title: Atelier Vélo API
-    description: 'API pour atelier participatif de vélo'
+    description: 'API pour atelier vélo participatif '
     version: 1.0.0
     mapping:
         paths: ['%kernel.project_dir%/src/Entity']

@@ -14,6 +14,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 
 class BicycleCrudController extends AbstractCrudController
 {
@@ -51,7 +52,7 @@ class BicycleCrudController extends AbstractCrudController
             IntegerField::new('tires_condition', 'Pneus'),
             IntegerField::new('breaks_condition', 'Freins'),
             IntegerField::new('gears_condition', 'Vitesses'),
-            MoneyField::new('price', 'Prix')->setCurrency('EUR'),
+            NumberField::new('price', 'Prix')->setNumDecimals(2),
             ImageField::new('image', 'Image')
                         ->setBasePath('upload/images')
                         ->setUploadDir('public/upload/images')

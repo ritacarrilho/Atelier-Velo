@@ -7,8 +7,11 @@ use App\Repository\ServiceRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
  * @ORM\Entity(repositoryClass=ServiceRepository::class)
+ * @ApiResource(
+ *      collectionOperations={"get"},
+ *      itemOperations={"get"}
+ * )
  */
 class Service
 {

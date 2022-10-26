@@ -1,8 +1,0 @@
-# easy_admin:
-#     entities:
-#         Bicycle:
-#             # class: App\Entity\Bicycle
-#             list:
-#                 fields:
-#                     - { property: 'disponibility', type: 'boolean' }
-#                     - { property: 'image', type: 'image' }

@@ -68,7 +68,7 @@ security:
          - { path: '^/admin', roles: [ROLE_ADMIN, ROLE_USER] }
         #  - { path: '^/api', roles: [IS_AUTHENTICATED_FULLY] }
          - { path: '^/api/users', roles: [IS_AUTHENTICATED_FULLY] }
-         - { path: '^/api/subscriber', roles: [IS_AUTHENTICATED_FULLY] }
+         - { path: '^/api/subscriber', roles: [IS_AUTHENTICATED_ANONYMOUSLY] }
          - { path: ^/api/events, roles: IS_AUTHENTICATED_ANONYMOUSLY } 
          - { path: ^/api/products, roles: IS_AUTHENTICATED_ANONYMOUSLY } 
          - { path: ^/api/bicycles, roles: IS_AUTHENTICATED_ANONYMOUSLY } 
@@ -76,7 +76,7 @@ security:
          - { path: ^/api/bicycle_types, roles: IS_AUTHENTICATED_ANONYMOUSLY } 
          - { path: ^/api/event_categories, roles: IS_AUTHENTICATED_ANONYMOUSLY } 
          - { path: ^/api/product_categories, roles: IS_AUTHENTICATED_ANONYMOUSLY } 
-
+         - { path: ^/api/services, roles: IS_AUTHENTICATED_ANONYMOUSLY } 
 
 when@test:
     security:

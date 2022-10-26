@@ -8,7 +8,10 @@ use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass=EventCategoryRepository::class)
- * @ApiResource()
+ * @ApiResource(
+ *      collectionOperations={"get"},
+ *      itemOperations={"get"}
+ * )
  */
 class EventCategory
 {

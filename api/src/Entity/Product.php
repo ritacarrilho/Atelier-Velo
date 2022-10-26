@@ -8,7 +8,10 @@ use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass=ProductRepository::class)
- * @ApiResource()
+ * @ApiResource(
+ *      collectionOperations={"get"},
+ *      itemOperations={"get"}
+ * )
  */
 class Product
 {

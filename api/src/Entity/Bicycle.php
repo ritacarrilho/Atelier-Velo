@@ -5,13 +5,17 @@ namespace App\Entity;
 use App\Repository\BicycleRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiProperty;
 use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 
 /**
  * @ORM\Entity(repositoryClass=BicycleRepository::class)
- * @ApiResource()
+ * @ApiResource(
+ *      collectionOperations={"get"},
+ *      itemOperations={"get"}
+ * )
  */
 class Bicycle
 {
@@ -63,18 +67,21 @@ class Bicycle
     private $image;
 
     /**
+     * @ApiProperty(readableLink=true)
      * @ORM\ManyToOne(targetEntity=ProductCategory::class)
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
 
     /**
+     * @ApiProperty(readableLink=true)
      * @ORM\ManyToOne(targetEntity=BicycleType::class)
      * @ORM\JoinColumn(nullable=false)
      */
     private $type;
 
     /**
+     * @ApiProperty(readableLink=true)
      * @ORM\ManyToOne(targetEntity=BicycleSize::class)
      */
     private $size;
