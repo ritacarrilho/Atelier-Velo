@@ -1,5 +1,8 @@
 @import "./setings.scss";
 
+#services-section {
+    padding-top: 0;
+}
 .services-list {
     background-color: white;
     color: $dark-blue;
@@ -51,7 +54,7 @@
 @media screen and (min-width: 425px) {
     .services-list {
         .services-flex {
-            gap: 0;
+            
             div {
                 width: calc(33% - 6px);
             }
@@ -59,9 +62,10 @@
     }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 790px) {
     .services-list {
         .services-flex {
+            gap: 0;
             div {
                 width: calc(33% - 6px);
                 background-color: transparent;

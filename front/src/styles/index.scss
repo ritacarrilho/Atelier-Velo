@@ -15,10 +15,6 @@ body {
     line-height: 26px;
 }
 
-.container {
-    padding: 50px;
-}
-
 h1, h2, h3, h4, h5, h6 {
     padding-bottom: 25px;
     font-family: 'Kanit', 'sans-serif';
@@ -47,11 +43,21 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     flex-wrap: wrap;
     gap: 40px;
+    padding-bottom: 100px;
 
-    .image-intro-atelier {
+    .home-intro-flex {
         width: 100%;
-        height: auto;
+    }
+
+    .home-intro-image-container {
         display: none;
+        width: 100%;
+
+        .image-intro-atelier {
+            width: 100%;
+            height: auto;
+            
+        }
     }
 }
 
@@ -144,10 +150,6 @@ h1, h2, h3, h4, h5, h6 {
         background-image: url('../images/intro_img.jpg');
         background-repeat: no-repeat;
         background-size: cover;
-        // filter:  blur(3px);
-        // filter: brightness(0.3);
-        // background: rgb(9, 15, 27, 0.5);
-        // opacity: 80%;
         filter: brightness(40%);
         z-index: 0;
     }
@@ -200,4 +202,60 @@ h1, h2, h3, h4, h5, h6 {
 .events {
     background-color: white;
     color: $dark-blue;
+}
+
+@media screen and (min-width: 1024px) {
+    .home-intro {
+        flex-direction: row-reverse;
+        padding-bottom: 100px;
+        .home-intro-flex {
+            width: 45%;
+        }
+
+        .home-intro-image-container {
+            width: 50%;
+            display: block;
+            .image-intro-atelier {
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+                height: 100%;
+            }
+        }
+    }
+
+    .home-services {
+        .home-services-container {
+            width: 60%;
+            margin-left: 30%;
+        }
+    }
+
+    .home-events {
+        .cards-wrapper {
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            .card {
+                width:45%;
+                .card-info {
+                    min-height: 555px;
+                }
+            }
+        }
+    }
+
+    .home-bicycles .home-bicycles-cards-wrapper{
+        flex-direction: row;
+
+        .home-bycicles-cards {
+            width: 30%;
+        }
+    }
+}
+
+@media screen and (min-width: 1250px) {
+    .home-events .cards-wrapper .card {
+        width: 30%;
+ }
 }

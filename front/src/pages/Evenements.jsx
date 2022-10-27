@@ -7,6 +7,7 @@ import axios from 'axios';
 import Banner from '../components/Banner';
 import Header from '../components/Header';
 import EvenementsList from '../components/EvenementsList';
+import Footer from '../components/Footer';
 
 const Events = () => {
     const [evenements, setEvenements] = useState([]);
@@ -27,6 +28,7 @@ const Events = () => {
             <section className='events container'>
                 <EvenementsList evenements = { evenements} />
             </section>
+            <Footer />
         </>
     );
 };

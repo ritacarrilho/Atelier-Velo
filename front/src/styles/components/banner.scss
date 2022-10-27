@@ -25,3 +25,24 @@
         padding-top: 70px;
     }
 }
+
+/* -------- Queries -------- */
+@media screen and (min-width: 790px) {
+    .banner {
+        height: 250px;
+
+        .banner-title {
+            padding-top: 90px;
+        }
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .banner {
+        height: 350px;
+
+        .banner-title {
+            padding-top: 150px;
+        }
+    }
+}

@@ -74,9 +74,7 @@ nav {
 
 .burger-menu {
   --burger-menu-radius: 4em;
-
   position: fixed;
-  top: 1vh;
   left: 5vw;
   z-index: 100;
   display: block;
@@ -142,9 +140,7 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-//   background: #1a1e23;
   background: $dark-blue;
-
   opacity: 0;
   overflow-x: hidden;
   visibility: hidden;
@@ -283,7 +279,7 @@ nav {
 
 .logo-mobile {
     position: absolute;
-    top: 3vh;
+    top: 2vh;
     right: 4vw;
     z-index: 150;
     display: block;
@@ -298,11 +294,16 @@ nav {
         display: none;
     }
 
+    .logo-mobile{
+      left: 100px;
+    }
+
     .menu {
         height: 100px;
         opacity:initial;
         visibility: visible;
         background: none;
+        z-index: 200;
         .logo-mobile {
             display: block;
         }
@@ -312,6 +313,13 @@ nav {
             .menu-nav {
                 display: flex;
                 color: aliceblue;
+                padding: 0;
+                width: 50%;
+                right: 100px;
+                position: fixed;
+                padding-top: 30px;
+
+          
             }
 
             .burger-menu {
@@ -319,4 +327,21 @@ nav {
             }
         }
     }
+    .gallery {
+      display: none;
+    }
   }
+
+@media screen and (min-width: 1440px) {
+  .logo-mobile{
+    left: 200px;
+  }
+
+  .menu {
+    .menu-inner {
+      .menu-nav {
+        right: 200px;
+      }
+    }     
+  }
+}

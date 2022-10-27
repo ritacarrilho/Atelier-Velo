@@ -27,8 +27,16 @@ const Home = () => {
     const [evenements, setEvenements] = useState([]);
     const [nextEvenements, setNextEvenements] = useState([]);
     const [passedEvenements, setPassedEvenements] = useState([]);
+    const [isDesktop, setDesktop] = useState(window.innerWidth < 1250);
     let title;
-    
+    let elementsNb;
+
+    const updateMedia = () => {
+        setDesktop(window.innerWidth < 1250);
+    };
+
+    isDesktop ?  elementsNb = 3 :  elementsNb = 6;
+
     const navigateServices = () => {
         // 👇️ navigate to /
         navigate('/services');
@@ -77,6 +85,10 @@ const Home = () => {
         })
             .catch(err => console.log(err));
 
+        window.addEventListener("resize", updateMedia);
+        return () => window.removeEventListener("resize", updateMedia);
+
+
         // AxiosInstance.get(`/services`)
         //     .then(res =>  {
         //         // setServices(res.data);
@@ -106,7 +118,7 @@ const Home = () => {
                     <ServicesLabels services = { services }/>
                 </div>
 
-                <div>
+                <div className='home-intro-image-container'>
                     <img key="image" src={ introImage } alt={ introImage } className='image-intro-atelier'/>
                 </div>
             </section>
@@ -120,15 +132,15 @@ const Home = () => {
             <section className='home-bicycles container'>
                 <h2>Les Vélos</h2>
                 <div className='home-bicycles-cards-wrapper'>
-                    { sortedByDate(bicycles.slice(-3).map(( bicycle ) => (
+                    { sortedByDate(bicycles.slice(-elementsNb).map(( bicycle ) => (
                         <BicyclesList key={ bicycle.id}  bicycle={ bicycle } /> 
-                    )))}
+                    ))) }
                 </div>
             </section>
 
         {/* Services */}
             <section className='home-services'>
-                <div className='container'>
+                <div className='home-services-container container'>
                     <h2>Nos Services</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ac et adipiscing pellentesque amet viverra. Fusce phasellus pulvinar amet tellus ullamcorper enim amet. Tristique vitae est cursus dolor purus. Pellentesque in nulla sodales dolor. Arcu in arcu in tellus massa.</p>
                     <p>Volutpat sed enim, risus aliquam proin tellus pellentesque facilisi. Vel non tellus, libero porta est ultricies at sit. Ipsum enim risus in feugiat quam purus tincidunt. Dignissim quis euismod viverra imperdiet tristique est. Aliquam elit varius ut elit tempor et risus ut.</p>
@@ -141,10 +153,10 @@ const Home = () => {
                 <h2>{ title }</h2>
                     <div className='cards-wrapper'> 
                 { nextEvenements.lenght > 0 ? 
-                    nextArr.slice(0,3).map(( evenement ) => (
+                    nextArr.slice(0,elementsNb).map(( evenement ) => (
                         <EvenementsCard key={ evenement.id}  event = { evenement } /> 
                     )) : 
-                    prevArr.slice(0,3).map(( evenement ) => (
+                    prevArr.slice(0,elementsNb).map(( evenement ) => (
                         <EvenementsCard key={ evenement.id}  event = { evenement } /> 
                     ))
                     }

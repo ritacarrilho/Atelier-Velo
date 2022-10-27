@@ -1,11 +1,16 @@
 import React from 'react';
+
+// Components
 import Header from '../components/Header';
+import Banner from '../components/Banner';
+import Footer from '../components/Footer';
 
 const About = () => {
     return (
         <div>
             <Header />
-            <h1>L'atelier Page</h1>
+            <Banner title={'L\'atelier'} />
+            <Footer />
         </div>
     );
 };
