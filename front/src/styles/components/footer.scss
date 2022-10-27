@@ -1,0 +1,11 @@
+/* Footer */
+footer {
+    display: flex;
+    justify-content: space-between;
+
+    .footer-icons-wrapper {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+    }
+}

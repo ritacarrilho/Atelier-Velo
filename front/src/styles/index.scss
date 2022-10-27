@@ -1,13 +1,18 @@
 @import "./reset.css";
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap');
 @import "./components/header.scss";
+@import "./components/cards.scss";
+@import "./components/banner.scss";
+@import "./components/footer.scss";
+@import "./components/services.scss";
+@import '@splidejs/react-splide/css';
 
 body {
-    font-family: 'Roboto', sans-serif;;
+    font-family: 'Roboto', sans-serif;
     color: white;
     background-color: $dark-blue;
     font-size: 18px;
-    line-height: 30px;
+    line-height: 26px;
 }
 
 .container {
@@ -15,15 +20,15 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    padding-bottom: 15px;
+    padding-bottom: 25px;
     font-family: 'Kanit', 'sans-serif';
-    font-size: 2rem;
+    font-size: 2.8rem;
     text-transform: uppercase;
+    line-height: 45px;
 }
 
-/* ===== Home Page ===== */
+/* ------------- Home Page -------------- */
 .home-banner {
-    // margin-top: 150px;
     height: 65vh;
     width: 100%;
     position: absolute;
@@ -34,17 +39,44 @@ h1, h2, h3, h4, h5, h6 {
         width: 100%;
     }
 }
-
+/* Home intro */
 .home-intro {
     margin-top: 65vh;
     color: $dark-blue;
     background-color: white ;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+
+    .image-intro-atelier {
+        width: 100%;
+        height: auto;
+        display: none;
+    }
 }
 
+/* Home Counter */
+.home-counter {
+    position: absolute;
+    background-color: #090F1B;
+    width: 70vw;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    margin-top: -38px;
+    text-align: center;
+
+    p {
+        font-weight: 600;
+    }
+}
+
+/* Home Services */
 .services-flex {
     display: flex;
     flex-wrap: wrap;
-    gap: 19px;
+    gap: 8px;
     justify-content: space-between;
     align-items: center;
     padding-top: 15px;
@@ -56,4 +88,116 @@ h1, h2, h3, h4, h5, h6 {
         align-items: center;
         gap: 20px;
     }
+}
+
+/* Home Bicycles*/
+.home-bicycles {
+    background-color: $dry-blue;
+    padding-top: 100px;
+
+    h2 {
+        text-align: center;
+        color: $dark-blue;
+    }
+
+    .home-bicycles-cards-wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+
+        .home-bycicles-cards {
+            display: flex;
+            flex-direction: column;
+
+            .home-bicycles-image {
+                object-fit: cover;
+                width: 100%;
+            }
+
+            .home-bycicles-card-bg {
+                padding: 20px;
+                background-color: $dark-blue;
+
+                h6 {
+                    font-weight: 400;
+                    text-transform: initial;
+                    padding-bottom: 0;
+                    font-size: 2rem;
+                }
+            }
+        }
+    }
+}
+
+/* Home Services */
+.home-services {
+    position: relative;
+
+    &:before {
+        content: " ";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background-image: url('../images/intro_img.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        // filter:  blur(3px);
+        // filter: brightness(0.3);
+        // background: rgb(9, 15, 27, 0.5);
+        // opacity: 80%;
+        filter: brightness(40%);
+        z-index: 0;
+    }
+
+    h2 {
+        position: relative;
+    }
+
+    p {
+        padding-bottom: 20px;
+        position: relative;
+    }
+
+    .home-services-btn {
+        margin-top: 15px;
+        background-color: $dry-blue;
+        position: relative;
+    }
+}
+
+/* Home Events */
+.home-events {
+    background-color: white;
+    color: $dark-blue;
+
+    h2 {
+        color: $dark-blue;
+        text-align: center;
+    }
+}
+
+/* Home Quote */
+.home-quote {
+    background-color: $dry-blue;
+    color: $dark-blue;
+    text-align: center;
+
+    h6 {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+
+    .btn {
+        background-color: #090F1B;
+        color: white;
+    }
+}
+
+/* --------- EVENTS --------- */
+.events {
+    background-color: white;
+    color: $dark-blue;
 }

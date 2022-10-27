@@ -1,0 +1,31 @@
+@font-face {
+    font-family: sans-serif;
+}
+
+$titles_font: sans-serif;
+$text_font: sans-serif;
+
+$medium-blue: #4872B7;
+$dark-blue: #090F1B;
+$light-blue: #00e1ff;
+// $dry-blue: rgb(217, 114, 183, 17%);
+$dry-blue: #d4e3f8f3;
+
+.btn {
+    padding: 15px;
+    font-size: 1rem;
+}
+
+/* Site wrapper */
+
+@media screen and (min-width: 1024px) {
+    .container{
+        padding: 50px 100px !important;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .container{
+        padding: 50px 200px !important;
+    }
+}

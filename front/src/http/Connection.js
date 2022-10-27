@@ -1,10 +1,9 @@
-import React from "react";
 import axios from "axios";
 import { setAuthToken } from "./setAuthToken";
 import { connectionService } from "../services/connection.services";
 
-function Connection() {
-    
+ const Connection = () =>  {
+
     // api credentials
     const credentials = {
         username: 'AtelierVelo',
@@ -17,13 +16,15 @@ function Connection() {
       .then(response => {
         //get token from response
         const token  =  response.data.token;
-
+        // localStorage.setItem('AuthToken', token);
         connectionService.saveToken(token);
 
-        console.log(response.data.token);
+        // console.log(response.data.token);
 
         //set token to axios common header
         setAuthToken(token);
+
+        // AxiosInstance.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('AuthToken');
       })
 
       .catch(err => console.log(err));

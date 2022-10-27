@@ -13,4 +13,5 @@ export const AxiosInstance = axios.create({
   headers: { Authorization: getAuthorizationHeader() },
 });
 
+
 // AxiosInstance.defaults.headers.common['Authorization'] = `Bearer ${getToken()}`;

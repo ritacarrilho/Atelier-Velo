@@ -1,0 +1,58 @@
+.cards-wrapper {
+    display: flex;
+    gap: 40px;    
+    flex-direction: column;
+    width: 100%;
+
+    .card {
+        .event-card-image {
+            display: none;
+        }
+
+        .card-info {
+            padding: 65px 45px;
+            display: flex;
+            flex-direction: column;
+            gap: 23px;
+            border: 1px solid black;
+            border-bottom: 10px solid $medium-blue;
+
+            .event-date {
+                text-align: right;
+                text-transform: uppercase;
+                font-weight: 500;
+                font-size: 1.3rem;
+            }
+
+            h5 {
+                color: $medium-blue;
+                font-weight: 500;
+                font-size: 1.5rem;
+                padding-bottom: 0;
+                line-height: 28px;
+            }
+
+            h3 {
+                font-weight: 600;
+                font-size: 2.1rem;
+                padding-bottom: 0;
+            }
+
+            p {
+                padding-bottom: 5px;
+                text-transform: capitalize;
+            }
+
+            .date-wrapper {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+
+                img {
+                    height: 100%;
+                    width: auto;
+                }
+            }
+        }
+    }
+}

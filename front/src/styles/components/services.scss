@@ -1,0 +1,113 @@
+@import "./setings.scss";
+
+.services-list {
+    background-color: white;
+    color: $dark-blue;
+
+    .services-flex {
+        padding: 0;
+        gap: 10px;
+
+        div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: $dry-blue;
+            width: calc(50% - 5px);
+            min-height: 95px;
+            padding: 5px;
+            gap: 0;
+            justify-content: center;
+            justify-content: space-around;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+    }
+}
+
+.services-cards-list {
+    background-color: white;
+    color: $dark-blue;
+
+    .cards-wrapper {
+        flex-direction: column;
+
+        .card {
+            .card-info {
+                .services-card-icon {
+                    align-self: end;
+                    width: 40px;
+
+                    img {
+                        width: 100%;
+                        height: auto;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 425px) {
+    .services-list {
+        .services-flex {
+            gap: 0;
+            div {
+                width: calc(33% - 6px);
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .services-list {
+        .services-flex {
+            div {
+                width: calc(33% - 6px);
+                background-color: transparent;
+                flex-direction: row;
+                min-height: 0;
+                justify-content: center;
+                gap: 15px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .services-cards-list {
+        .cards-wrapper {
+            gap: 100px;
+            .card {
+                display: flex;
+                height: 323px;
+                .event-card-image {
+                    display: block;
+                    width: 50%;
+                    object-fit: cover;
+                    // height: 100%;
+                }    
+                .card-info {
+                    padding: 15px 25px;
+                    width: 50%;
+                    border: none;
+
+                    .services-card-icon {
+                        align-self: start;
+                    }
+                }     
+                
+                &:nth-child(odd) {
+                    flex-direction: row-reverse;
+                    text-align: right;
+
+                    .card-info {
+                        .services-card-icon {
+                            align-self: end;
+                        }
+                    }  
+                }
+            }
+        }   
+    }
+}
