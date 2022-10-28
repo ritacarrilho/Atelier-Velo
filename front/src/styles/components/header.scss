@@ -279,7 +279,7 @@ nav {
 
 .logo-mobile {
     position: absolute;
-    top: 2vh;
+    top: 3vh;
     right: 4vw;
     z-index: 150;
     display: block;
@@ -314,7 +314,7 @@ nav {
                 display: flex;
                 color: aliceblue;
                 padding: 0;
-                width: 50%;
+                gap: 25px;
                 right: 100px;
                 position: fixed;
                 padding-top: 30px;
@@ -334,13 +334,13 @@ nav {
 
 @media screen and (min-width: 1440px) {
   .logo-mobile{
-    left: 200px;
+    left: 270px;
   }
 
   .menu {
     .menu-inner {
       .menu-nav {
-        right: 200px;
+        right: 270px;
       }
     }     
   }

@@ -10,7 +10,7 @@ import Linkedin from '../images/linkedin.svg';
 
 const Footer = () => {
     return (
-        <footer className='container'>
+        <footer className='footer-container'>
              <Link to="/">
                 <img src={ Logo } alt="Atelier Vélo du Vernet" className='footer-logo' />
             </Link>

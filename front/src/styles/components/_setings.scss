@@ -16,6 +16,9 @@ $dry-blue: #d4e3f8f3;
     font-size: 1rem;
 }
 
+.footer-container {
+    padding: 50px 50px;
+}
 /* Site wrapper */
 .container {
     padding: 50px;
@@ -23,12 +26,20 @@ $dry-blue: #d4e3f8f3;
 
 @media screen and (min-width: 1024px) {
     .container{
-        padding: 70px 100px;
+        padding: 50px 100px;
+    }
+
+    .footer-container {
+        padding: 50px 100px;
     }
 }
 
 @media screen and (min-width: 1440px) {
     .container{
-        padding: 100px 200px;
+        padding: 100px 270px;
+    }    
+    
+    .footer-container {
+        padding: 50px 270px;
     }
 }

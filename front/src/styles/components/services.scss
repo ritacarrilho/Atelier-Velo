@@ -3,7 +3,7 @@
 #services-section {
     padding-top: 0;
 }
-.services-list {
+.services-list, .events-categories-labels {
     background-color: white;
     color: $dark-blue;
 
@@ -52,9 +52,8 @@
 }
 
 @media screen and (min-width: 425px) {
-    .services-list {
+    .services-list, .events-categories-labels {
         .services-flex {
-            
             div {
                 width: calc(33% - 6px);
             }

@@ -202,6 +202,10 @@ h1, h2, h3, h4, h5, h6 {
 .events {
     background-color: white;
     color: $dark-blue;
+
+    .event-category-title {
+        text-align: center;
+    }
 }
 
 @media screen and (min-width: 1024px) {
@@ -231,7 +235,7 @@ h1, h2, h3, h4, h5, h6 {
         }
     }
 
-    .home-events {
+    .home-events, .events {
         .cards-wrapper {
             flex-direction: row;
             flex-wrap: wrap;
@@ -239,7 +243,7 @@ h1, h2, h3, h4, h5, h6 {
             .card {
                 width:45%;
                 .card-info {
-                    min-height: 555px;
+                    min-height: 580px;
                 }
             }
         }
@@ -247,6 +251,9 @@ h1, h2, h3, h4, h5, h6 {
 
     .home-bicycles .home-bicycles-cards-wrapper{
         flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 0;
 
         .home-bycicles-cards {
             width: 30%;
@@ -257,5 +264,12 @@ h1, h2, h3, h4, h5, h6 {
 @media screen and (min-width: 1250px) {
     .home-events .cards-wrapper .card {
         width: 30%;
- }
+    }
+    .home-bicycles .home-bicycles-cards-wrapper{
+        gap: 50px;
+    }
+
+    .home-counter {
+        width: 50vw;
+    }
 }

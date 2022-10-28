@@ -27,15 +27,16 @@ const Home = () => {
     const [evenements, setEvenements] = useState([]);
     const [nextEvenements, setNextEvenements] = useState([]);
     const [passedEvenements, setPassedEvenements] = useState([]);
-    const [isDesktop, setDesktop] = useState(window.innerWidth < 1250);
+    const [isDesktop, setDesktop] = useState(window.innerWidth > 1250);
+    // const [title, setTitle] = useState("Prochains Événements");
     let title;
+
     let elementsNb;
+    isDesktop ? elementsNb = 6 : elementsNb = 3;
 
     const updateMedia = () => {
-        setDesktop(window.innerWidth < 1250);
+        setDesktop(window.innerWidth > 1250);
     };
-
-    isDesktop ?  elementsNb = 3 :  elementsNb = 6;
 
     const navigateServices = () => {
         // 👇️ navigate to /
@@ -44,15 +45,15 @@ const Home = () => {
 
     evenements.map((evenement) => {
         new Date(evenement.event_date) >= new Date() ?
-            nextEvenements.push(evenement) : passedEvenements.push(evenement);
+            nextEvenements.push(evenement) : passedEvenements.push(evenement)
     })
+   
+    // Events title
+    nextEvenements.length > 0 ? title = 'Prochains Événements' : title = 'Événements Passés';
 
     // sort events by date
     const nextArr = sortedByDate(nextEvenements).reverse();
     const prevArr = sortedByDate(nextEvenements).reverse();
-
-    // Events title
-    nextEvenements.length > 0 ? title = 'Prochains Événements' : title = 'Événements Passés';
 
     useEffect(() => {
         // Connection();
@@ -64,7 +65,7 @@ const Home = () => {
             })
             .catch(err => console.log(err));
 
-        axios.get(`http://atelier.lndo.site/api/bicycles/`)
+        axios.get(`http://atelier.lndo.site/api/bicycles`)
             .then(res =>  {
                 setBicycles(res.data);
                 // console.log(res.data[0].image);
@@ -86,17 +87,18 @@ const Home = () => {
             .catch(err => console.log(err));
 
         window.addEventListener("resize", updateMedia);
-        return () => window.removeEventListener("resize", updateMedia);
-
-
+        
+        return () => {
+            window.removeEventListener('resize', updateMedia);
+          };
+        
         // AxiosInstance.get(`/services`)
         //     .then(res =>  {
         //         // setServices(res.data);
         //         console.log(res)
         //     })
         //     .catch(err => console.log(err));
-    }, [])
-;
+    }, []);
 
     return (
         <>
@@ -172,8 +174,7 @@ const Home = () => {
         {/* Footer */}
             <Footer />
         </>
-        )
-
-  };
+    )
+};
 
 export default Home;
