@@ -30,7 +30,7 @@ const Home = () => {
     const [nextEvenements, setNextEvenements] = useState([]);
     const [passedEvenements, setPassedEvenements] = useState([]);
     const [isDesktop, setDesktop] = useState(window.innerWidth > 1250);
-    // const [title, setTitle] = useState("Prochains Événements");
+
     let title;
 
     let elementsNb;
@@ -41,14 +41,13 @@ const Home = () => {
     };
 
     const navigateServices = () => {
-        // 👇️ navigate to /
         navigate('/services');
     }
 
-    evenements.map((evenement) => {
+    evenements.map((evenement) => 
         new Date(evenement.event_date) >= new Date() ?
             nextEvenements.push(evenement) : passedEvenements.push(evenement)
-    })
+    );
    
     // Events title
     nextEvenements.length > 0 ? title = 'Prochains Événements' : title = 'Événements Passés';
@@ -58,12 +57,9 @@ const Home = () => {
     const prevArr = sortedByDate(nextEvenements).reverse();
 
     useEffect(() => {
-        // Connection();
-
         axios.get(`${process.env.REACT_APP_API_URL}services`)
             .then(res =>  {
                 setServices(res.data);
-                // console.log(res.data);
             })
             .catch(err => console.log(err));
 
@@ -71,21 +67,18 @@ const Home = () => {
             .then(res =>  {
                 setBicyclesNb(res.data);
                 setBicycles(sortedByDate(res.data));
-                // console.log(res.data[0].image);
             })
             .catch(err => console.log(err));
 
         axios.get(`${process.env.REACT_APP_API_URL}subscribers`)
             .then(res =>  {
                 setSubscribers(res.data);
-                // console.log(res.data);
             })
             .catch(err => console.log(err));
 
         axios.get(`${process.env.REACT_APP_API_URL}events`)
             .then(res =>  {
-                setEvenements(res.data);
-                // console.log(res.data);            
+                setEvenements(res.data);     
         })
             .catch(err => console.log(err));
 

@@ -8,18 +8,17 @@ import axios from 'axios';
 import Header from '../components/Header';
 import Banner from '../components/Banner';
 import BicyclesList from '../components/BicyclesList';
-import Footer from '../components/Footer';
 import BicyclesCategories from '../components/BicyclesCategories';
+import Footer from '../components/Footer';
 
 const Store = () => {
-    const elementsPerPage = 4;
+    const elementsPerPage = 10;
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("");
     const [pageNumber, setPageNumber] = useState(0);
     const [initialProducts, setInitialProducts] = useState([]);
     const [bicycles, setBicycles] = useState([]);
     const [bicycleSizes, setBicycleSizes] = useState([]);
-    // const [pageCount, setPageCount] = useState(Math.ceil(bicycles.length / elementsPerPage));
 
     const pagesVisited = pageNumber * elementsPerPage; // number of pages visited
 
@@ -29,21 +28,18 @@ const Store = () => {
             const availableBicycles = res.data.filter((bicycle) => bicycle.disponibility === true);
             setInitialProducts(availableBicycles);
             setBicycles(availableBicycles);
-            // console.log(res.data);
         })
         .catch(err => console.log(err));    
 
         axios.get(`${process.env.REACT_APP_API_URL}bicycle_sizes`)
         .then(res =>  {
             setBicycleSizes(res.data);
-            // console.log(res.data);
         })
         .catch(err => console.log(err));  
         
         axios.get(`${process.env.REACT_APP_API_URL}bicycle_types`)
         .then(res =>  {
             setCategories(res.data);
-            // console.log(res.data);
         })
         .catch(err => console.log(err));    
 
@@ -67,16 +63,21 @@ const Store = () => {
     return (
         <div>
             <Header />
+
+            {/* Banner */}
             <Banner title={'Nos Produits'} />
+
+            {/* Categories */}
             <section className='events-categories-labels container'>
                 <BicyclesCategories types = { categories } sizes = {bicycleSizes} handleClick={ handleClick }/>
                 {selectedCategory && <button onClick={() => { setSelectedCategory(""); setBicycles(initialProducts) } }>Annuler la recherche</button>}
             </section>
-
+            
+            {/* Bicycles */}
             <section className='bicycles-page container'>
-            <h2 className='category-title'>{ selectedCategory }</h2>
+                <h2 className='category-title'>{ !selectedCategory ? 'Les Vélos' : selectedCategory}</h2>
                 <div className='home-bicycles-cards-wrapper'>
-                    {bicycles.length < 1 ? 
+                    { bicycles.length < 1 ? 
                         <p className='no-elements-p'>Aucun {selectedCategory} en ce moment !</p> :
                         bicycles
                             .slice(pagesVisited, pagesVisited + elementsPerPage)
@@ -85,18 +86,19 @@ const Store = () => {
                         )) 
                     }
                 </div>
-            <ReactPaginate
-                previousLabel={"Précédent"}
-                nextLabel={"Suivant"}
-                pageCount={pageCount}
-                onPageChange={changePage}
-                containerClassName={"paginate-container "}
-                previousLinkClassName={"previousBttn"}
-                nextLinkClassName={"nextBttn"}
-                disabledClassName={"paginationDisabled"}
-                activeClassName={"paginationActive"}
-            />
+                <ReactPaginate
+                    previousLabel={"Précédent"}
+                    nextLabel={"Suivant"}
+                    pageCount={pageCount}
+                    onPageChange={changePage}
+                    containerClassName={"paginate-container "}
+                    previousLinkClassName={"previousBttn"}
+                    nextLinkClassName={"nextBttn"}
+                    disabledClassName={"paginationDisabled"}
+                    activeClassName={"paginationActive"}
+                />
             </section>
+
             <Footer />
         </div>
     );

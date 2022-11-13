@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
 // Icons
 import SensibilisationIcon from '../images/sensibilisation-icon.svg';
 import RecuperationIcon from '../images/recup-icon.svg';
@@ -13,19 +13,19 @@ import DefaultIcon from '../images/default-icon.svg';
 export const ServiceIcon = ( service ) => {
     switch (service.label) {
       case 'Vélo école':
-          return <Link to={`#${ service.id}`} ><img key={ service.id } src={ SchoolIcon } alt={ SchoolIcon }/></Link> 
+          return <img key={ service.id } src={ SchoolIcon } alt={ SchoolIcon }/>
       case 'Marquage bicycode':
-          return <Link to={`#${ service.id}`} ><img key={ service.id } src={ MarcageIcon } alt={ MarcageIcon }/></Link>
+          return <img key={ service.id } src={ MarcageIcon } alt={ MarcageIcon }/>
       case 'Animations':
-          return <Link to={`#${ service.id}`} ><img key={ service.id } src={ AnimationsIcon } alt={ AnimationsIcon }/></Link>
+          return <img key={ service.id } src={ AnimationsIcon } alt={ AnimationsIcon }/>
       case 'Récuperation de vélos':
-          return <Link to={`#${ service.id}`} ><img key={ service.id } src={ RecuperationIcon } alt={ RecuperationIcon }/></Link>
+          return <img key={ service.id } src={ RecuperationIcon } alt={ RecuperationIcon }/>
       case 'Formations mécaniques':
-          return <Link to={`#${ service.id}`} ><img key={ service.id } src={ FormationsIcon } alt={ FormationsIcon }/></Link>
+          return <img key={ service.id } src={ FormationsIcon } alt={ FormationsIcon }/>
       case 'Actions de sensibilisation':
-          return <Link to={`#${ service.id}`} ><img key={ service.id } src={ SensibilisationIcon } alt={ SensibilisationIcon }/> </Link>  
+          return <img key={ service.id } src={ SensibilisationIcon } alt={ SensibilisationIcon }/>
       default:
-          return <Link to={`#${ service.id}`} ><img key={ service.id } src={ DefaultIcon } alt={ DefaultIcon }/></Link>     
+          return <img key={ service.id } src={ DefaultIcon } alt={ DefaultIcon }/> 
     }
   }
 

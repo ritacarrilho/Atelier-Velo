@@ -5,7 +5,7 @@ const BicyclesCategories = ({ types, sizes, handleClick }) => {
         <>
             <div className='services-flex' onClick={ handleClick } >
                 { types.map(( type ) => (
-                    <div key={type.type}>
+                    <div key={type.id}>
                         <a className="categories-label"  key={ type.id } value={ type.id } >
                             <p>{ type.type }</p>
                         </a>
@@ -14,7 +14,7 @@ const BicyclesCategories = ({ types, sizes, handleClick }) => {
             </div>
             <div className='services-flex' onClick={ handleClick } >
             { sizes.map(( size ) => (
-                <div key={size.size}>
+                <div key={size.id}>
                     <a className="categories-label"  key={ size.id } value={ size.id } >
                         <p>{ size.size }</p>
                     </a>

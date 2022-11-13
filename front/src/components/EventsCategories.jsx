@@ -11,13 +11,13 @@ const EventsCategories = ({ categories, handleClick}) => {
     const ServiceIcon = ( categorie ) => {
         switch (categorie.label) {
           case 'Balades':
-              return <img key={ categorie.id } src={ SchoolIcon } alt={ SchoolIcon }/>
+              return <img key={ 'icon-1' } src={ SchoolIcon } alt={ SchoolIcon }/>
           case 'Activités':
-              return <img key={ categorie.id } src={ MarcageIcon } alt={ MarcageIcon }/>
+              return <img key={ 'icon-2' } src={ MarcageIcon } alt={ MarcageIcon }/>
           case 'Formation de mécanique':
-              return <img key={ categorie.id } src={ FormationsIcon } alt={ FormationsIcon }/>
+              return <img key={ 'icon-3' } src={ FormationsIcon } alt={ FormationsIcon }/>
           default:
-              return <img key={ categorie.id } src={ DefaultIcon } alt={ DefaultIcon }/>    
+              return <img key={ 'icon-4' } src={ DefaultIcon } alt={ DefaultIcon }/>    
         }
     }
 
@@ -25,7 +25,7 @@ const EventsCategories = ({ categories, handleClick}) => {
         <div className='services-flex' onClick={ handleClick } >
             { categories.map(( categorie ) => (
                 <div key={categorie.label}>
-                    <a className="categories-label"  key={ categorie.id } value={ categorie.id } >
+                    <a className="categories-label"  href={() => false} value={ categorie.id } >
                         { ServiceIcon( categorie )}
                         <p>{ categorie.label }</p>
                     </a>
