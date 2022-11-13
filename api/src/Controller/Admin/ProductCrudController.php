@@ -8,7 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
@@ -26,7 +26,7 @@ class ProductCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             TextField::new('model', 'Modele'),
             TextField::new('description', 'Description'),
-            MoneyField::new('price', 'Prix')->setCurrency('EUR'),
+            NumberField::new('price', 'Prix'),
             ImageField::new('image', 'Image')
                         // ->setBasePath('upload/images')
                         ->setUploadDir('public/upload/images')

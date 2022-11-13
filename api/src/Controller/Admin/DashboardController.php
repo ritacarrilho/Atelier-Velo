@@ -20,7 +20,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\SubscriberRepository;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -76,8 +75,7 @@ class DashboardController extends AbstractDashboardController
     {
         return [
             MenuItem::linktoUrl('Accueil', 'fas fa-home', $this->generateUrl('app_home')),
-
-            // MenuItem::linkToDashboard('Dashboard', 'fa fa-home'),
+            
             MenuItem::section('Vélos et Produits'),
             MenuItem::linkToCrud('Vélo', 'fas fa-bicycle', Bicycle::class),
             MenuItem::linkToCrud('Vélo - taille', 'fas fa-bicycle', BicycleSize::class),
@@ -89,8 +87,6 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Activités', 'fas fa-calendar-alt', Service::class),
             MenuItem::linkToCrud('Événements', 'fas fa-calendar-alt', Event::class),
             MenuItem::linkToCrud('Catégorie d\'événements', 'fas fa-calendar-alt', EventCategory::class),
-            
-
 
             MenuItem::section('Adhérents et Utilisateurs'),
             MenuItem::linkToCrud('Adhérents', 'fas fa-biking', Subscriber::class),

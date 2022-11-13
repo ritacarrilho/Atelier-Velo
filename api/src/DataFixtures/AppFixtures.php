@@ -136,7 +136,7 @@ class AppFixtures extends Fixture
                     ->setGearsCondition( rand(1, 5) )  
                     ->setPrice( rand(300, 1000) / 10 ) 
                     ->setDisponibility( rand(0, 1) )
-                    ->setImage( "http://via.placeholder.com/640x360" ) 
+                    ->setImage( "https://loremflickr.com/320/240/bicycle?random=".$i ) 
                     ->setCategory( $this->getReference(('prod_category-'. 0 ))) 
                     ->setType( $this->getReference(('bicycle_type-'. rand(1, count($this->types) )))) 
                     ->setSize( $this->getReference(('bicycle_size-'. rand(1, count($this->sizes)) ))); 
@@ -169,7 +169,7 @@ class AppFixtures extends Fixture
             $evt->setTitle( $faker->word( $nb = 3) )
                 ->setDescription( $faker->text($maxNbChars = 60) ) 
                 ->setEventDate( $faker->dateTimeBetween('now', '+2 years') )
-                ->setImage( "http://via.placeholder.com/640x360"  ) 
+                ->setImage( "https://loremflickr.com/320/240/bricolage?random=" . $i  ) 
                 ->setCategoryId( $this->getReference(('evt_category-'. rand(1, count($this->evts)))) )
                 ->setAddress($faker->address); 
 

@@ -5,12 +5,16 @@ namespace App\Entity;
 use App\Repository\SubscriberRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=SubscriberRepository::class)
  * @ApiResource(
  *      collectionOperations={"get"},
- *      itemOperations={"get"}
+ *      itemOperations={"get"},
+ *      normalizationContext={
+ *          "groups"={"read"}
+ *      }
  * )
  */
 class Subscriber
@@ -19,6 +23,7 @@ class Subscriber
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"read"})
      */
     private $id;
 
