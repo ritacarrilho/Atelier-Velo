@@ -1,0 +1,46 @@
+@import './setings';
+
+.paginate-container {
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+  .paginationActive a {
+    color: white;
+    background-color: $medium-blue;
+    border: 1px solid $medium-blue;
+    // padding: 5px;
+  }
+
+  a {
+    padding: 10px;
+    margin: 8px;
+    border: 1px solid $dark-blue;
+    cursor: pointer;
+  }
+}
+  
+  .paginationBttns {
+    width: 80%;
+    height: 40px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+  }
+  
+
+.bicycles-page {
+  .paginate-container {
+    a {
+      color: $dark-blue;
+    }
+  }
+}
+  
+
+  
+//   .paginationDisabled a {
+//     color: grey;
+//     background-color: grey;
+//   }

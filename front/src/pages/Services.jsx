@@ -12,7 +12,7 @@ const Services = () => {
     const [services, setServices] = useState([]);
 
     useEffect (() => {
-        axios.get(`http://atelier.lndo.site/api/services`)
+        axios.get(`${process.env.REACT_APP_API_URL}services`)
         .then(res =>  {
             setServices(res.data);
             // console.log(res.data);

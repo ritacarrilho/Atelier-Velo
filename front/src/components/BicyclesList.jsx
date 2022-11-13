@@ -14,9 +14,16 @@ const BicyclesList = ({ bicycle }) => {
         <div className='home-bycicles-cards'>
             <img key={bicycle.id} src={ bicycle.image } alt={bicycle.model} className="home-bicycles-image"/>
             <div className='home-bycicles-card-bg'>
-                <h6>{bicycle.model}</h6>
-                <p>{bicycle.type.type} - {bicycle.size.size}</p>
-                <p>{ priceFormat(bicycle.price.toLocaleString(navigator.language, { minimumFractionDigits: 0 }))}</p>
+                <div className='home-bycicles-card-left'>
+                    <h6>{bicycle.model}</h6>
+                    <p>{bicycle.type.type} - {bicycle.size.size}</p>
+                    <p>{ priceFormat(bicycle.price.toLocaleString(navigator.language, { minimumFractionDigits: 0 }))}</p>
+                </div>
+                <div className='home-bycicles-card-right'>
+                    <p>Condition de Pneus : {bicycle.tires_condition}</p>
+                    <p>Condition de Freins : {bicycle.breaks_condition}</p>
+                    <p>Condition de Vitesses : {bicycle.gears_condition}</p>
+                </div>
             </div>
         </div>
     );

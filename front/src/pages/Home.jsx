@@ -22,7 +22,9 @@ import introImage from '../images/intro_img.jpg';
 const Home = () => {
     const navigate = useNavigate();
     const [services, setServices] = useState([]);
+    const [bicyclesNb, setBicyclesNb] = useState([]);
     const [bicycles, setBicycles] = useState([]);
+
     const [subscribers, setSubscribers] = useState([]);
     const [evenements, setEvenements] = useState([]);
     const [nextEvenements, setNextEvenements] = useState([]);
@@ -58,28 +60,29 @@ const Home = () => {
     useEffect(() => {
         // Connection();
 
-        axios.get(`http://atelier.lndo.site/api/services`)
+        axios.get(`${process.env.REACT_APP_API_URL}services`)
             .then(res =>  {
                 setServices(res.data);
                 // console.log(res.data);
             })
             .catch(err => console.log(err));
 
-        axios.get(`http://atelier.lndo.site/api/bicycles`)
+        axios.get(`${process.env.REACT_APP_API_URL}bicycles`)
             .then(res =>  {
-                setBicycles(res.data);
+                setBicyclesNb(res.data);
+                setBicycles(sortedByDate(res.data));
                 // console.log(res.data[0].image);
             })
             .catch(err => console.log(err));
 
-        axios.get(`http://atelier.lndo.site/api/subscribers`)
+        axios.get(`${process.env.REACT_APP_API_URL}subscribers`)
             .then(res =>  {
                 setSubscribers(res.data);
                 // console.log(res.data);
             })
             .catch(err => console.log(err));
 
-        axios.get(`http://atelier.lndo.site/api/events`)
+        axios.get(`${process.env.REACT_APP_API_URL}events`)
             .then(res =>  {
                 setEvenements(res.data);
                 // console.log(res.data);            
@@ -91,13 +94,6 @@ const Home = () => {
         return () => {
             window.removeEventListener('resize', updateMedia);
           };
-        
-        // AxiosInstance.get(`/services`)
-        //     .then(res =>  {
-        //         // setServices(res.data);
-        //         console.log(res)
-        //     })
-        //     .catch(err => console.log(err));
     }, []);
 
     return (
@@ -128,15 +124,17 @@ const Home = () => {
         {/* Counter */}
             <section className='home-counter'>
                 <p>{subscribers.length} Adhérents</p>
-                <p>{bicycles.length} Vélos Récupérés</p>
+                <p>{bicyclesNb.length} Vélos Récupérés</p>
             </section>
 
             <section className='home-bicycles container'>
                 <h2>Les Vélos</h2>
                 <div className='home-bicycles-cards-wrapper'>
-                    { sortedByDate(bicycles.slice(-elementsNb).map(( bicycle ) => (
-                        <BicyclesList key={ bicycle.id}  bicycle={ bicycle } /> 
-                    ))) }
+                    { bicycles
+                        .slice(-elementsNb)
+                        .map(( bicycle ) => (
+                            <BicyclesList key={ bicycle.id}  bicycle={ bicycle } /> 
+                    )) }
                 </div>
             </section>
 
@@ -155,11 +153,15 @@ const Home = () => {
                 <h2>{ title }</h2>
                     <div className='cards-wrapper'> 
                 { nextEvenements.lenght > 0 ? 
-                    nextArr.slice(0,elementsNb).map(( evenement ) => (
-                        <EvenementsCard key={ evenement.id}  event = { evenement } /> 
+                    nextArr
+                        .slice(0,elementsNb)
+                        .map(( evenement ) => (
+                            <EvenementsCard key={ evenement.id}  event = { evenement } /> 
                     )) : 
-                    prevArr.slice(0,elementsNb).map(( evenement ) => (
-                        <EvenementsCard key={ evenement.id}  event = { evenement } /> 
+                    prevArr
+                        .slice(0,elementsNb)
+                        .map(( evenement ) => (
+                            <EvenementsCard key={ evenement.id}  event = { evenement } /> 
                     ))
                     }
                 </div>

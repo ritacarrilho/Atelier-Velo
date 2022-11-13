@@ -22,7 +22,7 @@ const EventsCategories = ({ categories, handleClick}) => {
     }
 
     return (
-        <div className='services-flex' onClick={ handleClick }>
+        <div className='services-flex' onClick={ handleClick } >
             { categories.map(( categorie ) => (
                 <div key={categorie.label}>
                     <a className="categories-label"  key={ categorie.id } value={ categorie.id } >

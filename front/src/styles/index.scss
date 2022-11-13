@@ -6,6 +6,7 @@
 @import "./components/footer.scss";
 @import "./components/services.scss";
 @import '@splidejs/react-splide/css';
+@import './components/pagination.scss';
 
 body {
     font-family: 'Roboto', sans-serif;
@@ -105,7 +106,7 @@ h1, h2, h3, h4, h5, h6 {
         text-align: center;
         color: $dark-blue;
     }
-
+}
     .home-bicycles-cards-wrapper {
         width: 100%;
         display: flex;
@@ -124,6 +125,9 @@ h1, h2, h3, h4, h5, h6 {
             .home-bycicles-card-bg {
                 padding: 20px;
                 background-color: $dark-blue;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
 
                 h6 {
                     font-weight: 400;
@@ -134,7 +138,7 @@ h1, h2, h3, h4, h5, h6 {
             }
         }
     }
-}
+
 
 /* Home Services */
 .home-services {
@@ -208,6 +212,14 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+/* --------- BICYCLES --------- */
+.bicycles-page {
+    background-color: white;
+    .category-title , .no-elements-p {
+        color: $dark-blue;
+    }
+}
+
 @media screen and (min-width: 1024px) {
     .home-intro {
         flex-direction: row-reverse;
@@ -249,7 +261,7 @@ h1, h2, h3, h4, h5, h6 {
         }
     }
 
-    .home-bicycles .home-bicycles-cards-wrapper{
+    .home-bicycles-cards-wrapper{
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -259,13 +271,19 @@ h1, h2, h3, h4, h5, h6 {
             width: 30%;
         }
     }
+
+    .bicycles-page {
+        .home-bicycles-cards-wrapper {
+            gap: 25px;
+        }
+    }
 }
 
 @media screen and (min-width: 1250px) {
     .home-events .cards-wrapper .card {
         width: 30%;
     }
-    .home-bicycles .home-bicycles-cards-wrapper{
+    .home-bicycles-cards-wrapper{
         gap: 50px;
     }
 
