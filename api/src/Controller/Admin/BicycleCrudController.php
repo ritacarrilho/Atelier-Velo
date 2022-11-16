@@ -56,8 +56,8 @@ class BicycleCrudController extends AbstractCrudController
                         ->setBasePath('upload/images')
                         ->setUploadDir('public/upload/images')
                         ->setSortable(false),
-            BooleanField::new('disponibility', 'Available'),
-            AssociationField::new('category', 'Categorie'),
+            BooleanField::new('disponibility', 'Disponible'),
+            AssociationField::new('category', 'Catégorie'),
             AssociationField::new('type', 'Modéle'),
             AssociationField::new('size', 'Taille'),
         ];
