@@ -46,12 +46,6 @@ const Header = () => {
                         <span><div>L'atelier</div></span>
                     </NavLink>
                 </li>
-                <li className="menu-nav-item">
-                    <NavLink to="/contacts">
-                        <span><div>Contacts</div></span>
-                    </NavLink>
-                </li>
-
             </ul>
             <div className="gallery">
             <div className="title">

@@ -6,7 +6,6 @@ import Evenements from './pages/Evenements';
 import Home from './pages/Home';
 import Services from './pages/Services';
 import Store from './pages/Store';
-import Contacts from './pages/Contacts';
 import Error from './pages/Error';
 
 const App = () => {
@@ -20,7 +19,6 @@ const App = () => {
         <Route path="/magasin" element={ <Store /> }></Route>
         <Route path="/services" element={ <Services /> }></Route>
         <Route path="/atelier" element={ <About/> }></Route>
-        <Route path="/contacts" element={ <Contacts /> }></Route>
         <Route path="*" element={ <Error /> }></Route>
       </Routes>
     </BrowserRouter>
