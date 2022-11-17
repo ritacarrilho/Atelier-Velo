@@ -83,8 +83,8 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Produits', 'fas fa-store', Product::class),
             MenuItem::linkToCrud('Catégorie des produits', 'fas fa-store', ProductCategory::class),
 
-            MenuItem::section('Evénements et Activités'),
-            MenuItem::linkToCrud('Activités', 'fas fa-calendar-alt', Service::class),
+            MenuItem::section('Evénements et Services'),
+            MenuItem::linkToCrud('Services', 'fas fa-calendar-alt', Service::class),
             MenuItem::linkToCrud('Événements', 'fas fa-calendar-alt', Event::class),
             MenuItem::linkToCrud('Catégorie d\'événements', 'fas fa-calendar-alt', EventCategory::class),
 
